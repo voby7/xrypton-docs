@@ -1,7 +1,7 @@
 ---
-title: "XP Leveling System: Configure and Manage Levels"
+title: "XP Leveling System: Configure and Manage Server Levels"
 sidebarTitle: "Levels"
-description: "Enable and fine-tune XRYPTON's XP leveling system — configure XP rates, level-up notifications, role rewards, effort bonuses, and booster perks for your server."
+description: "Enable and tune XRYPTON's XP leveling system — set XP rates, level-up notifications, role rewards, effort bonuses, and booster perks for your server."
 ---
 
 XRYPTON's leveling system rewards members for being active in your server. Every message earns XP (subject to a configurable cooldown), and members level up automatically as they accumulate it. You can attach role rewards to specific levels, customise the level-up notification, and tune every aspect of how XP is earned. All leveling commands are available as both prefix and slash commands.
@@ -117,6 +117,10 @@ Assign a Discord role as a reward for reaching a specific level.
 <Warning>
   You cannot assign roles with **Administrator** or **Manage Server** permissions as level rewards. XRYPTON will reject the request to prevent privilege escalation.
 </Warning>
+
+<Note>
+  `/level rewards reset` requires **Administrator** permission. Adding and removing individual rewards only requires **Manage Server**.
+</Note>
 
 **Example:**
 

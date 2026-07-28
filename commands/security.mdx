@@ -1,5 +1,5 @@
 ---
-title: "Anti-Nuke and Anti-Raid Command Reference"
+title: "XRYPTON Anti-Nuke and Anti-Raid Commands Reference"
 sidebarTitle: "Security"
 description: "Full reference for XRYPTON's Anti-Nuke and Anti-Raid systems — configure modules, punishments, thresholds, and whitelists to protect your server."
 ---
@@ -69,10 +69,10 @@ Anti-Raid operates on join events and has three independent modules: **Mass Join
 | `antiraid whitelist view` | `antiraid whitelist view` | List all users currently on the Anti-Raid whitelist. | Manage Server |
 | `antiraid massjoin enable` | `antiraid massjoin enable --do <ban\|kick> --threshold <joins>` | Enable the Mass Join module. Set the punishment and the number of joins within 10 seconds that triggers it. Alias: `on`. | Manage Server |
 | `antiraid massjoin disable` | `antiraid massjoin disable` | Disable the Mass Join module. Alias: `off`. | Manage Server |
-| `antiraid newaccounts enable` | `antiraid newaccounts on --do <ban\|kick> --threshold <days>` | Enable New Accounts protection. Accounts younger than `<days>` days will be actioned on join. Alias: `on`. | Manage Server |
+| `antiraid newaccounts on` | `antiraid newaccounts on --do <ban\|kick> --threshold <days>` | Enable New Accounts protection. Accounts younger than `<days>` days will be actioned on join. Alias: `enable`. | Manage Server |
 | `antiraid newaccounts disable` | `antiraid newaccounts disable` | Disable New Accounts protection. Alias: `off`. | Manage Server |
 | `antiraid newaccounts whitelist` | `antiraid newaccounts whitelist <user>` | Allow a specific user to join even if their account is younger than the threshold. Alias: `wl`. | Manage Server |
-| `antiraid defaultavatar enable` | `antiraid defaultavatar on --do <ban\|kick>` | Enable Default Avatar protection. Members who join without a custom profile picture are actioned immediately. Aliases: `dav`, `defaultpfp` (for the group); `on` for the subcommand. | Manage Server |
+| `antiraid defaultavatar enable` | `antiraid defaultavatar enable --do <ban\|kick>` | Enable Default Avatar protection. Members who join without a custom profile picture are actioned immediately. Aliases for group: `dav`, `defaultpfp`; alias for subcommand: `on`. | Manage Server |
 | `antiraid defaultavatar disable` | `antiraid defaultavatar disable` | Disable Default Avatar protection. Alias: `off`. | Manage Server |
 
 <Warning>

@@ -1,5 +1,5 @@
 ---
-title: "Protect Your Server from Raids with Anti-Raid"
+title: "Protect Your Discord Server from Raids with Anti-Raid"
 sidebarTitle: "Anti-Raid"
 description: "Stop coordinated raids before they cause damage by blocking mass join waves, freshly-created alt accounts, and users with default Discord avatars."
 ---
@@ -227,19 +227,19 @@ XRYPTON responds with an embed showing the current raid state (**Safe** if all m
 
 ## Command Reference
 
-| Command | Syntax | Description |
-|---|---|---|
-| `antiraid massjoin enable` | `/antiraid massjoin enable --do <punishment> --threshold <joins>` | Enables Mass Join protection with the given punishment and join threshold. |
-| `antiraid massjoin disable` | `/antiraid massjoin disable` | Disables Mass Join protection. |
-| `antiraid newaccounts on` | `/antiraid newaccounts on --do <punishment> --threshold <days>` | Enables New Accounts protection with the given punishment and minimum age in days. |
-| `antiraid newaccounts disable` | `/antiraid newaccounts disable` | Disables New Accounts protection. |
-| `antiraid newaccounts whitelist` | `/antiraid newaccounts whitelist <user>` | Adds or removes a user from the New Accounts-specific whitelist (toggles). |
-| `antiraid defaultavatar enable` | `/antiraid defaultavatar enable --do <punishment>` | Enables Default Avatar protection with the given punishment. |
-| `antiraid defaultavatar disable` | `/antiraid defaultavatar disable` | Disables Default Avatar protection. |
-| `antiraid whitelist` | `/antiraid whitelist <user>` | Adds a user to the global Anti-Raid whitelist. |
-| `antiraid unwhitelist` | `/antiraid unwhitelist <user>` | Removes a user from the global Anti-Raid whitelist. |
-| `antiraid whitelist view` | `/antiraid whitelist view` | Displays all globally whitelisted users. |
-| `antiraid settings` | `/antiraid settings` | Shows the current status, punishment, and threshold for each module. |
+| Command | Aliases | Syntax | Description |
+|---|---|---|---|
+| `antiraid massjoin enable` | `on` | `/antiraid massjoin enable --do <punishment> --threshold <joins>` | Enables Mass Join protection with the given punishment and join threshold. |
+| `antiraid massjoin disable` | `off` | `/antiraid massjoin disable` | Disables Mass Join protection. |
+| `antiraid newaccounts on` | `enable` | `/antiraid newaccounts on --do <punishment> --threshold <days>` | Enables New Accounts protection with the given punishment and minimum age in days. |
+| `antiraid newaccounts disable` | `off` | `/antiraid newaccounts disable` | Disables New Accounts protection. |
+| `antiraid newaccounts whitelist` | `wl` | `/antiraid newaccounts whitelist <user>` | Adds or removes a user from the New Accounts-specific whitelist (toggles). |
+| `antiraid defaultavatar enable` | `on` | `/antiraid defaultavatar enable --do <punishment>` | Enables Default Avatar protection with the given punishment. |
+| `antiraid defaultavatar disable` | `off` | `/antiraid defaultavatar disable` | Disables Default Avatar protection. |
+| `antiraid whitelist` | `wl` | `/antiraid whitelist <user>` | Adds a user to the global Anti-Raid whitelist. |
+| `antiraid unwhitelist` | `unwl` | `/antiraid unwhitelist <user>` | Removes a user from the global Anti-Raid whitelist. |
+| `antiraid whitelist view` | — | `/antiraid whitelist view` | Displays all globally whitelisted users. |
+| `antiraid settings` | `stats`, `config` | `/antiraid settings` | Shows the current status, punishment, and threshold for each module. |
 
 <Accordion title="Accepted punishment values">
   Both `--do` flags across all modules accept:

@@ -1,10 +1,10 @@
 ---
-title: "Moderate Your Discord Server with XRYPTON"
+title: "Moderate Your Discord Server Effectively with XRYPTON"
 sidebarTitle: "Moderation"
 description: "A complete reference for every XRYPTON moderation command — from banning members and locking channels to managing roles and cleaning up messages."
 ---
 
-XRYPTON's moderation suite gives your staff team a full toolkit to keep your server safe and organised. Every command listed below is a prefix command (e.g. `,ban`) unless marked as a hybrid command, which can also be used as `/ban`. Commands check your Discord role hierarchy, so you can only act on members whose highest role sits below yours.
+XRYPTON's moderation suite gives your staff team a full toolkit to keep your server safe and organised. Commands marked as **hybrid** work both as a prefix command (e.g. `,lockdown`) and as a slash command (e.g. `/lockdown`). All other commands are prefix-only. Commands respect your Discord role hierarchy, so you can only act on members whose highest role sits below yours.
 
 ---
 
@@ -65,10 +65,11 @@ XRYPTON's moderation suite gives your staff team a full toolkit to keep your ser
 ```
 
 **Permission:** Manage Server  
-Clones the channel (preserving topic, position, and permission overwrites), then deletes the original. A confirmation prompt appears before the action is carried out. Sticky messages and welcome configurations are automatically migrated to the new channel.
+Clones the channel (preserving topic, position, and permission overwrites), then deletes the original. A confirmation prompt appears before the action is carried out.
 
 ### Lockdown
 
+**Hybrid command** — usable as `,lockdown` or `/lockdown`  
 **Permission:** Manage Channels  
 Prevents the configured lockdown role (default: `@everyone`) from sending messages in a channel.
 
@@ -83,6 +84,7 @@ Prevents the configured lockdown role (default: `@everyone`) from sending messag
 
 ### Unlock
 
+**Hybrid command** — usable as `,unlock` or `/unlock`  
 **Permission:** Manage Channels  
 Re-enables message sending for the lockdown role.
 
@@ -106,6 +108,7 @@ Toggles whether `@everyone` can see the channel at all.
 
 ### Channel Create / Delete / Rename / NSFW
 
+**Hybrid command** — usable as `,channel` or `/channel`  
 **Permission:** Manage Channels
 
 ```bash
@@ -119,6 +122,8 @@ Toggles whether `@everyone` can see the channel at all.
 
 ## Message Cleanup — Purge
 
+**Hybrid command** — usable as `,purge` or `/purge`  
+**Alias:** `c`  
 **Permission:** Manage Messages  
 All `purge` subcommands default to removing 15 messages. Pass an `amount` argument to override.
 
@@ -152,6 +157,8 @@ All `purge` subcommands default to removing 15 messages. Pass an `amount` argume
 
 ## Role Management
 
+**Hybrid command** — usable as `,role` or `/role`  
+**Alias:** `r`  
 **Permission:** Manage Roles  
 The `role` command group lets you create, delete, and assign roles in bulk.
 

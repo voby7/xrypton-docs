@@ -18,11 +18,11 @@ The simplest game in the lineup. Pick a side, place your bet, and let the coin d
 
 **Command**
 ```
-/economy coinflip <amount> <side>
+/eco coinflip <amount> <side>
 ```
 
-- `<amount>` — The number of coins to wager (or `0` for demo mode).
-- `<side>` — Either `heads` or `tails`.
+- `<amount>` — The number of coins to wager (or `0` for demo mode). Accepts shorthand like `1k` or `all`.
+- `<side>` — Either `heads`, `tails`, or `random`.
 
 ### How It Works
 
@@ -48,7 +48,7 @@ The simplest game in the lineup. Pick a side, place your bet, and let the coin d
 </CardGroup>
 
 <Tip>
-  Coinflip is the fastest game to run. Use demo mode (`/economy coinflip 0 heads`) a few times to get comfortable before putting coins on the line.
+  Coinflip is the fastest game to run. Use demo mode (`/eco coinflip 0 heads`) a few times to get comfortable before putting coins on the line.
 </Tip>
 
 ---
@@ -59,11 +59,11 @@ A grid-based game of risk and reward. Click tiles to reveal safe squares, watch 
 
 **Command**
 ```
-/economy mines <amount> <bombs>
+/eco mines <amount> <bombs>
 ```
 
-- `<amount>` — Coins to wager (or `0` for demo mode).
-- `<bombs>` — Number of mines hidden in the grid, between **1 and 20**.
+- `<amount>` — Coins to wager (or `0` for demo mode). Accepts shorthand like `1k` or `all`.
+- `<bombs>` — Number of mines hidden in the grid, between **2 and 16**.
 
 ### The Grid
 
@@ -106,7 +106,7 @@ The board is a **4 × 5 grid** (20 tiles total). A number of bombs equal to your
 </Warning>
 
 <Tip>
-  Start with fewer bombs (e.g., 3–5) to practice building your multiplier safely. High bomb counts (15+) can yield enormous multipliers but the probability of hitting a mine on any given tile rises sharply.
+  Start with fewer bombs (e.g., 2–4) to practice building your multiplier safely. High bomb counts can yield enormous multipliers but the probability of hitting a mine on any given tile rises sharply.
 </Tip>
 
 ---
@@ -117,10 +117,10 @@ Challenge the house to a classic game of rock, paper, scissors with coins on the
 
 **Command**
 ```
-/economy rps <amount>
+/eco rps <amount>
 ```
 
-- `<amount>` — Coins to wager (or `0` for demo mode).
+- `<amount>` — Coins to wager (or `0` for demo mode). Accepts shorthand like `1k` or `all`.
 
 ### How It Works
 
@@ -160,10 +160,10 @@ A floor-climbing game where every level cleared multiplies your bet — but one 
 
 **Command**
 ```
-/economy towers <amount>
+/eco towers <amount>
 ```
 
-- `<amount>` — Coins to wager (or `0` for demo mode).
+- `<amount>` — Coins to wager (or `0` for demo mode). Accepts shorthand like `1k` or `all`.
 
 ### The Tower
 
@@ -185,7 +185,7 @@ The tower has **5 floors**, each with **3 doors** (buttons). One door on each fl
     After clearing at least one floor, the **Cashout** button becomes available. Press it to lock in your current multiplied winnings and end the game safely.
   </Step>
   <Step title="Reach the top or bail out">
-    Climb all 5 floors to reach the maximum multiplier, or cash out whenever the risk feels too high. If you hit a bomb at any floor, all bombs are revealed and your original wager is lost.
+    Climb all 5 floors to reach the maximum multiplier, or cash out whenever the risk feels too high. If you hit a bomb at any floor, all bombs on cleared and current floors are revealed and your original wager is lost.
   </Step>
 </Steps>
 

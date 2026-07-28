@@ -1,5 +1,5 @@
 ---
-title: "Dynamic Voice Channels with XRYPTON VoiceMaster"
+title: "Auto Voice Channels for Discord with XRYPTON VoiceMaster"
 sidebarTitle: "VoiceMaster"
 description: "Let members instantly spawn and fully control their own temporary voice channels using XRYPTON's VoiceMaster system — no staff involvement required."
 ---
@@ -7,7 +7,7 @@ description: "Let members instantly spawn and fully control their own temporary 
 VoiceMaster lets every member of your server create their own private voice channel on demand. When someone joins the designated **Join-to-Create** channel, XRYPTON automatically creates a personal voice channel for them. The channel is deleted automatically once it becomes empty, keeping your channel list clean without any manual housekeeping.
 
 <Note>
-  All VoiceMaster commands are **prefix-only** — they are not available as slash commands. The default prefix is `,`, so every command starts with `,voicemaster` (or the shorter aliases `,vm` and `,vc`).
+  All VoiceMaster commands are **prefix-only** — they are not available as slash commands. The default prefix is `,`, so every command starts with `,voicemaster` (or the shorter aliases `,voice`, `,vm`, or `,vc`).
 </Note>
 
 ---
@@ -76,7 +76,7 @@ Once a member has a voice channel, they can manage it using the **buttons in the
     ,voicemaster ghost
     ,voicemaster unghost
     ```
-    Hides or reveals your channel from the channel list. Aliases: `hide` / `reveal` / `unhide`.
+    Hides or reveals your channel from the channel list. `ghost` also accepts the alias `hide`; `unghost` also accepts `reveal` and `unhide`.
   </Card>
   <Card title="Permit / Reject" icon="user-check">
     ```bash

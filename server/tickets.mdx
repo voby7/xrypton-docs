@@ -1,7 +1,7 @@
 ---
-title: "Create a Support Ticket System with XRYPTON"
+title: "Set Up a Full Support Ticket System with XRYPTON Bot"
 sidebarTitle: "Tickets"
-description: "Build a fully featured support ticket system with topic selection, staff roles, transcript logging, and a persistent panel embed — all powered by XRYPTON."
+description: "Build a professional support ticket system with topic selection, staff roles, transcript logging, and a panel embed — all powered by XRYPTON."
 ---
 
 XRYPTON's ticket system gives your server a professional, button-driven support workflow. Staff can be pinged automatically when a ticket opens, topics help members route their requests to the right team, and every closed ticket is saved as a transcript so nothing gets lost. All ticket commands are **prefix-only** and use the `,ticket` group.
@@ -16,7 +16,7 @@ XRYPTON's ticket system gives your server a professional, button-driven support 
     ,ticket category #My-Support-Category
     ```
     **Permission:** Administrator  
-    New ticket channels will be created inside this category. Omit the argument to remove the category setting.
+    New ticket channels will be created inside this category. Run the command without an argument to remove the category setting.
   </Step>
   <Step title="Set the panel channel">
     ```bash
@@ -38,14 +38,14 @@ XRYPTON's ticket system gives your server a professional, button-driven support 
     ,ticket staff @Moderator
     ```
     **Permission:** Administrator  
-    Run the command again with the same role to remove it. Run `,ticket staff` with no argument to clear all staff roles. Staff roles are pinged (and immediately deleted) whenever a new ticket is opened.
+    Run the command again with the same role to remove it. Run `,ticket staff` with no argument to clear all staff roles. Staff roles are pinged when a new ticket is opened.
   </Step>
   <Step title="Set the transcript log channel">
     ```bash
     ,ticket logs #ticket-logs
     ```
     **Permission:** Administrator  
-    When a ticket is closed, a `.txt` transcript of the human-readable messages is uploaded to this channel along with a summary embed. Omit the argument to disable logging.
+    When a ticket is closed, a `.txt` transcript of the human-readable messages is uploaded to this channel along with a summary embed. Run the command without an argument to disable logging.
   </Step>
   <Step title="Send the panel">
     ```bash
@@ -89,8 +89,7 @@ These commands only work inside an active ticket channel.
 Any member with access to the ticket can click the 🗑️ **delete button** inside the ticket channel. A confirmation prompt appears with **Close** and **Cancel** options. When confirmed:
 
 1. A transcript is generated and uploaded to the log channel (if configured).
-2. The ticket is removed from the database.
-3. The channel is deleted after a 2-second delay.
+2. The ticket channel is deleted after a short delay.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Configure Your Server with XRYPTON Setup Tools"
+title: "Configure Your Discord Server with XRYPTON Setup Tools"
 sidebarTitle: "Setup"
 description: "Set up welcome and leave messages, prefixes, aliases, auto-roles, sticky messages, boost messages, booster roles, autoresponders, and fake permissions."
 ---
@@ -177,7 +177,7 @@ Boost messages support the same placeholder variables as welcome messages.
 
 Allow server boosters to create and customise a personal role. Requires the booster role module to be enabled first.
 
-**Permission:** Administrator (setup/disable); no extra permission required for personal customisation commands
+**Permission:** Manage Server (setup/disable); no extra permission required for personal customisation commands
 
 <Steps>
   <Step title="Enable the module">
@@ -219,7 +219,7 @@ Allow server boosters to create and customise a personal role. Requires the boos
 
 Automatically reply with a set response whenever a message matches a trigger phrase.
 
-**Permission:** Manage Server
+**Permission:** Manage Messages
 
 ```bash
 /autoresponder add <trigger> <response>   # create a new autoresponder
@@ -230,8 +230,12 @@ Automatically reply with a set response whenever a message matches a trigger phr
 **Example:**
 
 ```bash
-/autoresponder add "discord rules" "Read our rules at #rules!"
+/autoresponder add rules "Read our rules at #rules!"
 ```
+
+<Tip>
+  Optional flags let you fine-tune how autoresponders behave. Add `--not_strict` to match the trigger anywhere in a message (instead of an exact match), `--reply` to reply directly to the triggering message, `--delete_trigger` to delete the original message, or `--self_destruct <seconds>` to auto-delete the response after a set time.
+</Tip>
 
 ---
 

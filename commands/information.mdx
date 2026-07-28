@@ -1,5 +1,5 @@
 ---
-title: "Information and Lookup Commands Reference"
+title: "XRYPTON Information and Lookup Command Reference Guide"
 sidebarTitle: "Information"
 description: "Look up users, servers, roles, emojis, and more with XRYPTON's full suite of information and snipe commands — all detailed here."
 ---
@@ -42,13 +42,13 @@ Commands for inspecting the server itself — membership, boosts, bans, invites,
 | `boosters` | `,boosters` | Paginated list of all current Nitro boosters and when they started boosting. |
 | `boosters lost` | `,boosters lost` | Show members who previously boosted the server but have since stopped. |
 | `bots` | `,bots` | Paginated list of every bot currently in the server. |
-| `bans` | `,bans` | Paginated list of all banned users with their ban reasons. Requires **Ban Members** permission to be meaningful. |
+| `bans` | `,bans` | Paginated list of all banned users with their ban reasons. |
 | `banreason` | `,banreason <@user>` | Show the ban reason for a specific user. Requires **Ban Members**. |
 | `inviteinfo` | `,inviteinfo <invite>` | Detailed info about an invite code: channel, creation date, expiry, inviter, and guild stats. Alias: `ii` |
 | `roleinfo` | `,roleinfo <@role>` | Display a role's ID, colour, creation date, and member list. Aliases: `rinfo`, `ri` |
 
 <Warning>
-  `banreason` and `bans` require you to have the **Ban Members** permission in the server. Without it, the command will be refused.
+  `banreason` requires the **Ban Members** permission. Without it, the command will be refused.
 </Warning>
 
 ---

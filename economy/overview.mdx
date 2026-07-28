@@ -4,14 +4,14 @@ sidebarTitle: "Economy"
 description: "Learn how to earn coins, go fishing for rare catches, browse the shop, and manage your inventory in XRYPTON's full-featured economy system."
 ---
 
-XRYPTON's economy system gives you a persistent wallet, a full-featured shop, an interactive fishing mini-game, and a personal inventory — all accessible through the economy command group. Whether you're grinding coins through fishing or spending them on gear, everything feeds into one connected progression loop.
+XRYPTON's economy system gives you a persistent wallet, a full-featured shop, an interactive fishing mini-game, and a personal inventory — all accessible through the `/eco` command group. Whether you're grinding coins through fishing or spending them on gear, everything feeds into one connected progression loop.
 
 ## Your Wallet
 
 Your wallet is the foundation of the economy. It tracks your **cash on hand** as well as your **bank balance** (with a personal bank limit). When you check your wallet, XRYPTON generates a personalized card image showing your current cash, bank, and username — and if you're a donor, the card gets a premium dark theme.
 
 ```
-/economy wallet
+/eco wallet
 ```
 
 <CardGroup cols={2}>
@@ -41,10 +41,6 @@ There are several paths to building your coin balance. The more actively you eng
   Use your Fishing Rod to cast a line every 5 minutes. Each catch pays out coins directly to your wallet, or stores fish in your Fish Bag to sell in bulk. Rarer catches are worth significantly more.
 </Accordion>
 
-<Accordion title="Demo Mode">
-  Not ready to risk real coins? Pass `0` as your bet in any game to play in **demo mode** — nothing is won or lost, but you can get a feel for the mechanics before wagering.
-</Accordion>
-
 ---
 
 ## Fishing
@@ -56,24 +52,24 @@ Fishing is one of the steadiest ways to earn coins. You cast a line, reel in a c
     Head to the shop and purchase a **Fishing Rod** (💵 15,000). Without one, the fishing command will tell you that you're missing the required tool.
 
     ```
-    /economy shop
+    /eco shop view
     ```
   </Step>
   <Step title="Cast your line">
     Run the fish command to go fishing. XRYPTON rolls a weighted catch from the full fish pool and either deposits its value directly into your wallet or stows it in your Fish Bag.
 
     ```
-    /economy fish
+    /eco fish catch
     ```
   </Step>
   <Step title="Wait out the cooldown">
     You can fish once every **5 minutes**. If you try again too soon, XRYPTON will show you exactly when your next cast is ready.
   </Step>
   <Step title="Sell your stored fish (optional)">
-    If you own a Fish Bag, your catches are stored rather than auto-sold. Use the sell command to cash out your bag whenever you're ready.
+    If you own a Fish Bag, your catches are stored rather than auto-sold. Use the sell command to cash out individual fish from your bag whenever you're ready.
 
     ```
-    /economy sell
+    /eco fish sell
     ```
   </Step>
 </Steps>
@@ -84,7 +80,7 @@ Fish are drawn from a weighted pool spanning four rarity tiers. Higher rarities 
 
 <CardGroup cols={2}>
   <Card title="🐟 Common" icon="fish">
-    **Weight: 70** — Anchovy (💵 150) through Cod (💵 380). The bread-and-butter of every fishing session.
+    **Weight: 70** — Minnow (💵 100) through Cod (💵 380). The bread-and-butter of every fishing session.
   </Card>
   <Card title="🦑 Uncommon" icon="fish-fins">
     **Weight: 20** — Crayfish (💵 1,000) through Blowfish (💵 1,800). A solid upgrade over commons.
@@ -108,12 +104,12 @@ Fish are drawn from a weighted pool spanning four rarity tiers. Higher rarities 
 The shop is a paginated, interactive storefront where you browse available items and buy them with your wallet balance. It's split into categories — currently the **Coin Shop** is live, with a Star Shop coming soon.
 
 ```
-/economy shop
+/eco shop view
 ```
 
 <Steps>
   <Step title="Open the shop">
-    Run `/economy shop`. A paginated embed appears showing all available items, their prices, and your current balance at a glance.
+    Run `/eco shop view`. A paginated embed appears showing all available items, their prices, and your current balance at a glance.
   </Step>
   <Step title="Navigate pages">
     Use the arrow buttons to page through items if there are more than fit on one screen (up to 6 items per page).
@@ -130,7 +126,7 @@ The shop is a paginated, interactive storefront where you browse available items
 
 <CardGroup cols={2}>
   <Card title="🎣 Fishing Rod" icon="fishing-rod">
-    **Price: 💵 15,000** — Required to use the `/economy fish` command. Sell it back for 💵 7,500.
+    **Price: 💵 15,000** — Required to use the fishing command. Sell it back for 💵 7,500.
   </Card>
   <Card title="🎒 Fish Bag" icon="bag-shopping">
     **Price: 💵 50,000** — Stores your fish catches instead of auto-selling them. Sell it back for 💵 25,000.
@@ -148,13 +144,13 @@ The shop is a paginated, interactive storefront where you browse available items
 Your inventory keeps track of every item you own — tools, storage, and any fish you've accumulated. Items are grouped by category and displayed in a paginated embed.
 
 ```
-/economy inventory
+/eco inventory
 ```
 
 The inventory view shows each item's name, emoji, quantity, and category. If you own nothing yet, you'll be prompted to visit the shop first.
 
 <Tip>
-  Your Fish Bag contents (stored fish) are tracked separately from your regular inventory. Use the fishing sell command to convert your stored catches into coins.
+  Your Fish Bag contents (stored fish) are tracked separately from your regular inventory. Use `/eco fish sell` to convert your stored catches into coins.
 </Tip>
 
 ---

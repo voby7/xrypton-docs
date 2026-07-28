@@ -1,5 +1,5 @@
 ---
-title: "Frequently Asked Questions About XRYPTON Bot"
+title: "XRYPTON Bot: Frequently Asked Questions and Answers"
 sidebarTitle: "FAQ"
 description: "Answers to the most common questions about XRYPTON — setup, commands, features, permissions, and more to help you get the most out of the bot."
 ---
@@ -49,7 +49,7 @@ Whether you are just getting started or looking to unlock a specific feature, th
     - **Missing permissions** — XRYPTON needs permission to **Read Messages**, **Send Messages**, and **View Channel** in the channel you are using.
     - **Bot is offline** — Check XRYPTON's status indicator in the member list. If it shows offline, the bot may be restarting; wait a moment and try again.
     - **Rate limit hit** — XRYPTON enforces a limit of **3 commands per 5 seconds per user** and **4 commands per 5 seconds per channel**. If you have been sending commands quickly, wait a few seconds before trying again.
-    - **Privileged intents not enabled** — XRYPTON requires all privileged intents to be enabled on the bot application. If you are self-hosting, confirm this in the Discord Developer Portal.
+    - **Privileged intents not enabled** — XRYPTON requires all privileged intents to be active. If the bot is behaving unexpectedly, this may be the cause; reach out in the support server so the team can investigate.
 
     <Note>
       If none of the above apply, visit our support server for real-time help from the team.
@@ -78,9 +78,23 @@ Whether you are just getting started or looking to unlock a specific feature, th
   </Accordion>
 
   <Accordion title="Can I customize the bot's name and avatar per server?">
-    Discord does not allow bots to have different names or avatars on a per-server basis — any nickname or avatar change applies account-wide. However, a server administrator **can** give XRYPTON a server-specific nickname via Discord's built-in **Edit Nickname** feature on the bot's profile, which changes how the bot's name appears only within your server.
+    Yes — XRYPTON includes a built-in **Customize** feature that lets server owners set a per-server identity for the bot without affecting any other server. You can change:
 
-    Note that changing the bot's nickname does not affect how commands or mentions work.
+    - **Name** — how the bot appears in your server's member list and embeds.
+    - **Avatar** — the profile picture shown in your server.
+    - **Banner** — the banner image on the bot's profile.
+    - **About Me** — the bio text shown on the bot's profile card.
+
+    Use the customize commands to apply these changes:
+
+    ```
+    ,customize name <new name>
+    ,customize avatar <image url>
+    ,customize banner <image url>
+    ,customize aboutme <text>
+    ```
+
+    Only the **server owner** can run Customize commands. Changes are scoped entirely to your server and do not affect XRYPTON's appearance anywhere else.
   </Accordion>
 
   <Accordion title="How do I set up a ticket system?">

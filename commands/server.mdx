@@ -1,7 +1,7 @@
 ---
 title: "Server Configuration Commands Reference for XRYPTON"
 sidebarTitle: "Server"
-description: "Reference for XRYPTON's server commands — welcome, leave messages, prefix, autoroles, sticky messages, booster roles, autoresponder, and fake permissions."
+description: "Reference for XRYPTON server commands — welcome, leave messages, prefix, autoroles, sticky messages, booster roles, autoresponder, and fake permissions."
 ---
 
 XRYPTON's server configuration commands let you tailor nearly every aspect of your guild's automated messaging and permission system. From personalized welcome cards to booster-exclusive custom roles, everything is managed through clearly grouped command families. Most commands require at minimum **Manage Messages** or **Manage Roles**, with sensitive controls like fake permissions gated behind **Administrator**.
@@ -110,10 +110,10 @@ Automatically reply to messages that match a specific trigger phrase.
 
 | Command | Usage | Description | Required Permission |
 |---|---|---|---|
-| `autoresponder` | `autoresponder` | Show the autoresponder help menu. Aliases: `autorespond`, `autoresponse`, `ar`. | Manage Server |
-| `autoresponder add` | `autoresponder add <trigger> <response> [--flags]` | Add a new autoresponder. Supports flags: `--not_strict` (partial match), `--self_destruct <seconds>`, `--delete_trigger`, `--reply`. | Manage Server |
-| `autoresponder delete` | `autoresponder delete <trigger>` | Remove an autoresponder by its trigger phrase. Alias: `remove`. | Manage Server |
-| `autoresponder list` | `autoresponder list` | List all autoresponders configured in the server. | Manage Server |
+| `autoresponder` | `autoresponder` | Show the autoresponder help menu. Aliases: `autorespond`, `autoresponse`, `ar`. | Manage Messages |
+| `autoresponder add` | `autoresponder add <trigger> <response> [--flags]` | Add a new autoresponder. Supports flags: `--not_strict` (partial match), `--self_destruct <seconds>`, `--delete_trigger`, `--reply`. | Manage Messages |
+| `autoresponder delete` | `autoresponder delete <trigger>` | Remove an autoresponder by its trigger phrase. Alias: `remove`. | Administrator |
+| `autoresponder list` | `autoresponder list` | List all autoresponders configured in the server. | Manage Messages |
 
 <Tip>
 By default, autoresponders require an **exact** match. Add the `--not_strict` flag to trigger on messages that merely contain the trigger phrase anywhere in the content.

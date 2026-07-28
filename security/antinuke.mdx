@@ -1,10 +1,10 @@
 ---
-title: "Set Up Anti-Nuke Protection for Your Server"
+title: "Set Up Anti-Nuke Protection for Your Discord Server"
 sidebarTitle: "Anti-Nuke"
 description: "Defend your server against destructive attacks by monitoring audit log events and automatically punishing anyone who exceeds safe action thresholds."
 ---
 
-Anti-Nuke is XRYPTON's first line of defense against coordinated server destruction. It watches your audit log in real time and, the moment any user exceeds a configured threshold for a destructive action — mass bans, channel deletions, webhook abuse, and more — it automatically applies the punishment you've chosen. Only the server owner (or a designated Anti-Nuke admin) can change these settings, keeping the system safe from the very administrators it may need to act against.
+Anti-Nuke is XRYPTON's first line of defense against coordinated server destruction. It watches your audit log in real time and, the moment any user exceeds a configured threshold for a destructive action — mass bans, channel deletions, webhook abuse, and more — it automatically applies the punishment you've chosen. Only the server owner (or a designated Anti-Nuke admin) can change these settings, keeping the system safe from the very administrators it may need to act against. All Anti-Nuke commands are available under `/antinuke` (alias `/an`).
 
 <Warning>
   Anti-Nuke only takes effect after you enable it with `/antinuke enable`. All modules are created at setup time but start **disabled** — you must toggle each one on individually.
@@ -186,18 +186,18 @@ You can re-enable it at any time with `/antinuke enable` and your previous modul
 
 ## Command Reference
 
-| Command | Syntax | Description |
-|---|---|---|
-| `antinuke enable` | `/antinuke enable` | Enables Anti-Nuke for the server and initialises all modules. |
-| `antinuke disable` | `/antinuke disable` | Disables Anti-Nuke without deleting module configuration. |
-| `antinuke toggle` | `/antinuke toggle <module>` | Enables or disables a specific module (toggles on each call). |
-| `antinuke threshold` | `/antinuke threshold <module> <number>` | Sets how many actions within 60 seconds trigger a punishment. |
-| `antinuke action` | `/antinuke action <module> <punishment>` | Sets the punishment for a module (`ban`, `kick`, `warn`, `strip`). |
-| `antinuke whitelist` | `/antinuke whitelist <user>` | Adds or removes a user from the global whitelist (toggles). |
-| `antinuke whitelisted` | `/antinuke whitelisted` | Lists all users currently on the whitelist. |
-| `antinuke admin` | `/antinuke admin <user>` | Grants or revokes Anti-Nuke admin status for a user (toggles). |
-| `antinuke admins` | `/antinuke admins` | Lists all current Anti-Nuke admins. |
-| `antinuke settings` | `/antinuke settings` | Displays every module's enabled state, threshold, and punishment. |
+| Command | Aliases | Syntax | Description |
+|---|---|---|---|
+| `antinuke enable` | — | `/antinuke enable` | Enables Anti-Nuke for the server and initialises all modules. |
+| `antinuke disable` | — | `/antinuke disable` | Disables Anti-Nuke without deleting module configuration. |
+| `antinuke toggle` | — | `/antinuke toggle <module>` | Enables or disables a specific module (toggles on each call). |
+| `antinuke threshold` | — | `/antinuke threshold <module> <number>` | Sets how many actions within 60 seconds trigger a punishment. |
+| `antinuke action` | `punishment` | `/antinuke action <module> <punishment>` | Sets the punishment for a module (`ban`, `kick`, `warn`, `strip`). |
+| `antinuke whitelist` | `wl` | `/antinuke whitelist <user>` | Adds or removes a user from the global whitelist (toggles). |
+| `antinuke whitelisted` | — | `/antinuke whitelisted` | Lists all users currently on the whitelist. |
+| `antinuke admin` | — | `/antinuke admin <user>` | Grants or revokes Anti-Nuke admin status for a user (toggles). |
+| `antinuke admins` | — | `/antinuke admins` | Lists all current Anti-Nuke admins. |
+| `antinuke settings` | `config` | `/antinuke settings` | Displays every module's enabled state, threshold, and punishment. |
 
 <Accordion title="Valid module names for toggle / threshold / action">
   All module names are case-insensitive. The accepted values are:
