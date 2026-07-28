@@ -46,7 +46,8 @@
             "group": "Security",
             "pages": [
               "security/antinuke",
-              "security/antiraid"
+              "security/antiraid",
+              "security/fakepermissions"
             ]
           },
           {
