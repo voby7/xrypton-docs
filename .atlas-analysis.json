@@ -1,0 +1,124 @@
+{
+  "projectType": "saas",
+  "projectName": "XRYPTON",
+  "projectDescription": "XRYPTON is a feature-rich Discord bot offering moderation, security, economy, leveling, AI tools, games, and server management all in one.",
+  "theme": "luma",
+  "primaryColor": "#9ca4ac",
+  "lightColor": "#05eae4",
+  "darkColor": "#5ef0ed",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "permissions"
+            ]
+          },
+          {
+            "group": "Security",
+            "pages": [
+              "security/antinuke",
+              "security/antiraid"
+            ]
+          },
+          {
+            "group": "Server Management",
+            "pages": [
+              "server/moderation",
+              "server/setup",
+              "server/voicemaster",
+              "server/tickets",
+              "server/giveaways",
+              "server/levels"
+            ]
+          },
+          {
+            "group": "Economy",
+            "pages": [
+              "economy/overview",
+              "economy/games"
+            ]
+          },
+          {
+            "group": "AI & Fun",
+            "pages": [
+              "features/ai",
+              "features/fun",
+              "features/games",
+              "features/information"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Commands",
+        "groups": [
+          {
+            "group": "Reference",
+            "pages": [
+              "commands/moderation",
+              "commands/security",
+              "commands/server",
+              "commands/economy",
+              "commands/levels",
+              "commands/ai",
+              "commands/fun",
+              "commands/information",
+              "commands/utility"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Anti-Nuke protection with configurable modules, thresholds, and punishments",
+    "Anti-Raid protection (mass-join, new accounts, default avatar detection)",
+    "Full moderation suite (ban, kick, mute, purge, lockdown, role management)",
+    "Economy system with games (coinflip, mines, RPS, towers), fishing, shop, and inventory",
+    "XP leveling system with role rewards, leaderboards, and per-server configuration",
+    "Ticket system with topics, staff roles, categories, and transcript logging",
+    "Giveaway management (start, end, reroll, cancel)",
+    "VoiceMaster dynamic voice channel creation and management",
+    "AI features: text chat (/ask), image generation (/imagine), and text-to-speech (/tts)",
+    "Roleplay commands with GIF responses",
+    "Server utilities: welcome messages, auto-roles, autoresponders, sticky messages, booster roles",
+    "Information commands: userinfo, serverinfo, avatar, banner, emoji management",
+    "Snipe, edit snipe, and reaction snipe",
+    "Fun commands: 8ball, coinflip, ship, rate, and more",
+    "Mini-games: Tic-Tac-Toe, Snake, Blackjack, RPS, Cookie race"
+  ],
+  "publicApiSurface": [
+    "/antinuke enable|disable|toggle|threshold|action|whitelist|admin|settings",
+    "/antiraid massjoin|newaccounts|defaultavatar|whitelist|settings",
+    "/ban, /kick, /mute, /unmute, /nuke, /purge, /lockdown, /unlock",
+    "/role, /channel, /hide, /reveal, /stripstaff",
+    "/welcome, /prefix, /alias, /autorole, /autoresponder, /stickymessage",
+    "/boosts, /boosterrole, /leaves, /fakeperms",
+    "/level, /rank",
+    "/ticket add|remove|topics|staff|category|channel|logs|send|settings",
+    "/giveaway start|end|reroll|cancel|list",
+    "/voicemaster setup|reset|claim|lock|unlock|ghost|unghost|permit|reject",
+    "/ask, /imagine, /tts",
+    "/coinflip, /8ball, /ship, /rate, /math, /say, /nitro",
+    "/roleplay slap|hug|kiss|bite|cuddle|pat|punch|poke|cry (and more)",
+    "/tictactoe, /rps, /snake, /blackjack, /cookie",
+    "/userinfo, /serverinfo, /avatar, /banner, /ping, /botinfo, /invite",
+    "/snipe, /editsnipe, /reactionsnipe, /clearsnipes",
+    "/afk, /urban, /quickpoll, /screenshot, /createembed",
+    "/customize avatar|name|banner|aboutme|reset|resetall",
+    "/emoji steal|remove"
+  ]
+}

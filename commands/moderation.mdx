@@ -1,0 +1,107 @@
+---
+title: "Moderation Commands Reference for XRYPTON"
+sidebarTitle: "Moderation"
+description: "Complete reference for all XRYPTON moderation commands — member actions, channel controls, message purging, role management, and targeted mutes."
+---
+
+XRYPTON's moderation suite gives your staff team precise control over members, channels, messages, and roles. Every command enforces role-hierarchy checks automatically, so you can only act on members whose highest role sits below your own. Commands that affect boosters require an extra confirmation step to help you avoid accidents.
+
+## Member Actions
+
+Use these commands to take direct action against individual members.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `ban` | `ban <user> [reason]` | Permanently ban a user from the server. Aliases: `evict`, `deport`. Prompts confirmation if the target is a booster. | Ban Members |
+| `kick` | `kick <member> [reason]` | Kick a member from the server. Prompts confirmation if the target is a booster. | Kick Members |
+| `mute` | `mute <member> [duration]` | Timeout a member for the specified duration (default `60s`). Accepts formats like `30m`, `2h`, `1d`. | Moderate Members |
+| `unmute` | `unmute <member>` | Remove an active timeout from a member. | Moderate Members |
+| `unban` | `unban <user>` | Unban a previously banned user by their ID or username. | Moderate Members |
+| `forcenickname` | `forcenickname <member> [name]` | Lock a member to a specific nickname. Omit `name` to remove the existing forced nickname. Alias: `fn`. | Moderate Members |
+| `stripstaff` | `stripstaff <member>` | Remove all roles with dangerous permissions from a member. Alias: `strip`. | Administrator |
+
+<Warning>
+`ban` and `kick` will show an interactive confirmation prompt if the target member is a server booster. Only the command author can confirm or cancel the action.
+</Warning>
+
+<Note>
+`forcenickname` is persistent — if the member tries to change their own nickname, XRYPTON will automatically restore the forced name.
+</Note>
+
+## Channel Management
+
+Lock down, hide, or restructure channels on the fly.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `lockdown` | `lockdown [channel] [reason]` | Prevent the lockdown role (or `@everyone`) from sending messages in a channel. Alias: `lock`. | Manage Channels |
+| `lockdown all` | `lockdown all` | Lock every channel in the server, skipping channels on the ignore list. | Manage Channels |
+| `lockdown ignore` | `lockdown ignore <channel>` | Toggle a channel's presence on the lockdown ignore list. Run again to un-ignore it. | Manage Channels |
+| `lockdown ignored` | `lockdown ignored` | Display all channels currently excluded from `lockdown all`. | Manage Channels |
+| `lockdown role` | `lockdown role <role>` | Set a custom role to be targeted by lockdown instead of `@everyone`. | Manage Channels |
+| `unlock` | `unlock [channel] [reason]` | Restore send-messages permission for the lockdown role in a channel. | Manage Channels |
+| `unlock all` | `unlock all` | Unlock every channel in the server, skipping ignored channels. | Manage Channels |
+| `hide` | `hide [channel]` | Remove `View Channel` from `@everyone` for a channel, effectively hiding it. | Manage Channels |
+| `reveal` | `reveal [channel]` | Restore `View Channel` for `@everyone`, making a hidden channel visible again. | Manage Channels |
+| `nuke` | `nuke [channel]` | Clone a channel and delete the original, wiping its message history. Requires interactive confirmation. | Manage Server |
+| `channel create` | `channel create <name>` | Create a new text channel. Aliases: `add`, `make`. | Manage Channels |
+| `channel delete` | `channel delete <channel>` | Delete a text or voice channel. | Manage Channels |
+| `channel rename` | `channel rename <channel> <new name>` | Rename an existing channel. | Manage Channels |
+| `channel nsfw` | `channel nsfw <channel>` | Toggle NSFW status on a text channel. | Manage Channels |
+
+<Tip>
+Run `lockdown role <role>` once during setup to ensure lockdowns target your community role rather than `@everyone`. This prevents accidentally locking staff channels.
+</Tip>
+
+## Message Cleanup
+
+All `purge` subcommands default to **15 messages** if no amount is specified. Your invocation message is always deleted automatically.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `purge` | `purge [amount]` | Purge the specified number of non-pinned messages. Alias: `c`. | Manage Messages |
+| `purge user` | `purge user <member> [amount]` | Purge messages sent by a specific member. Alias: `member`. | Manage Messages |
+| `purge bots` | `purge bots [amount]` | Purge messages sent by bots only. | Manage Messages |
+| `purge links` | `purge links [amount]` | Purge messages that contain URLs or embeds. | Manage Messages |
+| `purge attachments` | `purge attachments [amount]` | Purge messages containing file attachments. Aliases: `images`, `pictures`, `files`. | Manage Messages |
+| `purge humans` | `purge humans [amount]` | Purge messages sent by human users only. Alias: `members`. | Manage Messages |
+| `purge stickers` | `purge stickers [amount]` | Purge messages containing stickers. Alias: `sticker`. | Manage Messages |
+| `purge mentions` | `purge mentions [amount]` | Purge messages that include any user mention. | Manage Messages |
+
+<Note>
+Pinned messages are never deleted by any `purge` subcommand.
+</Note>
+
+## Role Management
+
+Give, create, or adjust roles for members and the whole server.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `role` | `role <member> <role>` | Toggle a role on a member — adds it if they don't have it, removes it if they do. Alias: `r`. | Manage Roles |
+| `role create` | `role create <name>` | Create a new role with the given name. Alias: `add`. | Manage Roles |
+| `role delete` | `role delete <role>` | Delete an existing role. Alias: `del`. | Manage Roles |
+| `role all` | `role all <role>` | Add a role to every member in the server. | Manage Roles |
+| `role humans` | `role humans <role>` | Add a role to every non-bot member. | Manage Roles |
+| `role color` | `role color <hex> <role>` | Change a role's color using a hex code (e.g. `#FF5733`). Alias: `colour`. | Manage Roles |
+| `role hoist` | `role hoist <role>` | Toggle whether a role is displayed separately in the member list. | Manage Roles |
+| `role mentionable` | `role mentionable <role>` | Toggle whether a role can be mentioned by regular members. | Manage Roles |
+
+<Warning>
+`role all` and `role humans` can take a long time on large servers. XRYPTON will show an estimated completion time before it begins.
+</Warning>
+
+## Targeted Mutes
+
+These commands restrict specific types of activity for a single member in the current channel without applying a full timeout.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `imute` | `imute <member>` | Revoke a member's ability to attach files and embed links in the current channel. | Moderate Members |
+| `iunmute` | `iunmute <member>` | Restore a member's file attachment and link embed permissions in the current channel. | Moderate Members |
+| `reactionmute` | `reactionmute <member>` | Remove a member's ability to react and use external emojis in the current channel. Alias: `rmute`. | Moderate Members |
+| `reactionunmute` | `reactionunmute <member>` | Restore a member's reaction and external emoji permissions in the current channel. Alias: `runmute`. | Moderate Members |
+
+<Note>
+Targeted mutes are channel-scoped. They only apply to the channel where you run the command, leaving the member's permissions in other channels untouched.
+</Note>

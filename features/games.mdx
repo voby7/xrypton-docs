@@ -1,0 +1,193 @@
+---
+title: "Play Mini-Games with Friends Using XRYPTON"
+sidebarTitle: "Mini-Games"
+description: "Challenge friends to Tic-Tac-Toe, Blackjack, and Rock Paper Scissors, or go solo with Snake and Cookie — all playable with buttons right inside Discord."
+---
+
+XRYPTON comes with five interactive mini-games you can play directly inside Discord without leaving the app. Games are controlled entirely through buttons embedded in messages, so there's nothing to install or configure. All games work in **servers, DMs, and private channels**.
+
+<CardGroup cols={3}>
+  <Card title="Tic-Tac-Toe" icon="grid-2">
+    Classic 3×3 board game for two players.
+  </Card>
+  <Card title="Rock Paper Scissors" icon="hand">
+    Simultaneous two-player choice game.
+  </Card>
+  <Card title="Snake" icon="snake">
+    Solo game — eat apples and avoid walls.
+  </Card>
+  <Card title="Blackjack" icon="cards">
+    Two-player card game with Hit, Stand, and Double Down.
+  </Card>
+  <Card title="Cookie" icon="cookie">
+    Race to click the cookie first after a countdown.
+  </Card>
+</CardGroup>
+
+---
+
+## Tic-Tac-Toe
+
+Challenge anyone in your server to a classic game of Tic-Tac-Toe on a 3×3 grid.
+
+```
+/tictactoe [@player]
+```
+
+<Steps>
+  <Step title="Start the game">
+    Run `/tictactoe` to post an invitation embed. Optionally mention a specific player:
+
+    ```
+    /tictactoe @Alice
+    ```
+
+    If you don't mention anyone, the invite is open to the first person who clicks the ✅ button.
+  </Step>
+  <Step title="Opponent accepts">
+    Your opponent clicks the green ✅ button to join. The board appears and you (Player 1 — ⭕) take the first turn.
+  </Step>
+  <Step title="Take turns">
+    Players alternate clicking empty tiles. Player 1 claims tiles with a red **X**, Player 2 with a green **O**. The board shows whose turn it is after every move.
+  </Step>
+  <Step title="Game ends">
+    The game ends when one player gets three in a row (row, column, or diagonal) or all nine tiles are filled. The winner is announced in the message content, or a tie is declared.
+  </Step>
+</Steps>
+
+<Warning>
+  You cannot play against yourself. If you mention yourself, XRYPTON will reject the command. The game times out after **5 minutes** of inactivity and all buttons are disabled.
+</Warning>
+
+<Tip>
+  The invitation expires after **4 minutes** if nobody accepts it. Start a fresh game if your opponent is slow to respond.
+</Tip>
+
+---
+
+## Rock Paper Scissors
+
+A two-player Rock Paper Scissors game where both players lock in their choice simultaneously.
+
+```
+/rps
+```
+
+<Steps>
+  <Step title="Open the lobby">
+    Run `/rps` to post a lobby embed with an accept button. Share the message with whoever you want to challenge.
+  </Step>
+  <Step title="Opponent joins">
+    Your opponent clicks ✅ to accept. Both players now see three buttons: 🪨 Rock, 📄 Paper, ✂️ Scissors.
+  </Step>
+  <Step title="Both players choose">
+    Either player can go first — the embed updates to show that one player has locked in while the other is still deciding. Choices are hidden until both are submitted.
+  </Step>
+  <Step title="See the result">
+    Once both players have chosen, XRYPTON reveals both picks and declares the winner (or a tie). The buttons are disabled and the result is shown in the embed.
+  </Step>
+</Steps>
+
+<Note>
+  You cannot play against yourself. Once you make your choice, you cannot change it. The game times out after **4 minutes** if both players don't choose.
+</Note>
+
+---
+
+## Snake
+
+A solo Snake game played entirely with directional buttons inside Discord. Guide your snake around a 7×7 grid, eat apples, and avoid running into walls or yourself.
+
+```
+/snake
+```
+
+<Steps>
+  <Step title="Start the game">
+    Run `/snake` to spawn a new grid. Your snake (🟣 head, 🟨 body) starts near the center and a red apple (🍎) appears somewhere on the board.
+  </Step>
+  <Step title="Move with buttons">
+    Use the four directional buttons (⬆️ ⬅️ ⬇️ ➡️) to steer your snake. Each button press moves the snake one tile in that direction.
+  </Step>
+  <Step title="Eat apples to grow">
+    Moving onto the apple tile increases your score by 1 and grows your snake by one segment. A new apple spawns in a random empty tile after each eat.
+  </Step>
+  <Step title="Avoid game over">
+    The game ends if your snake hits a wall or runs into its own body. XRYPTON posts a ❌ **Game Over** message and removes the buttons.
+  </Step>
+</Steps>
+
+<Tip>
+  On a 7×7 grid, space gets tight fast once your snake is longer than 10 segments. Plan your path ahead and avoid boxing yourself into a corner.
+</Tip>
+
+<Note>
+  Only the person who started the game can move the snake. If someone else tries to use the directional buttons, they'll receive an ephemeral error message.
+</Note>
+
+---
+
+## Blackjack
+
+A two-player Blackjack card game. Players take turns deciding to Hit, Stand, or Double Down, trying to reach 21 without going over.
+
+```
+/blackjack
+```
+
+<Steps>
+  <Step title="Open the table">
+    Run `/blackjack` to post a table embed with a join button.
+  </Step>
+  <Step title="Opponent joins">
+    Another player clicks ✅ to join. Both players are dealt two cards from a shuffled standard deck. Player 1 goes first.
+  </Step>
+  <Step title="Take your turn">
+    On your turn, choose one of three actions:
+
+    | Button | Action |
+    |---|---|
+    | **Hit** | Draw one more card. If your total exceeds 21, you bust and lose. |
+    | **Stand** | Keep your current hand and pass the turn. |
+    | **Double Down** | Draw exactly one more card, then your turn ends automatically. *(Only available on specific turns.)* |
+  </Step>
+  <Step title="Game resolves">
+    After both players have stood, busted, or doubled down, XRYPTON compares totals. The highest hand under or equal to 21 wins. A tie is declared if totals match. The result shows both full hands and final values.
+  </Step>
+</Steps>
+
+<Accordion title="Card values">
+  - **Number cards (2–10):** Face value
+  - **Jack, Queen, King:** 10 points each
+  - **Ace:** 11 points, automatically reduced to 1 if your hand would otherwise bust
+</Accordion>
+
+<Warning>
+  You cannot play Blackjack against yourself. The game times out after **4 minutes** of inactivity, disabling all buttons.
+</Warning>
+
+---
+
+## Cookie
+
+A reaction-speed game — watch a countdown and be the first to click the cookie when it appears.
+
+```
+/cookie
+```
+
+<Steps>
+  <Step title="Start the countdown">
+    Run `/cookie`. XRYPTON posts an embed that counts down from **5** to **1**, updating the message every second.
+  </Step>
+  <Step title="Click the cookie">
+    When the cookie 🍪 button appears, click it as fast as you can. The first person to click wins.
+  </Step>
+  <Step title="See the winner">
+    The embed updates to show who clicked first. If nobody clicks within the 10-second window, XRYPTON announces that no one claimed the cookie.
+  </Step>
+</Steps>
+
+<Tip>
+  Unlike other games, **anyone** in the channel can click the cookie — not just the person who ran the command. This makes it great for quick server-wide speed challenges.
+</Tip>

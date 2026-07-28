@@ -1,0 +1,161 @@
+---
+title: "Frequently Asked Questions About XRYPTON Bot"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about XRYPTON — setup, commands, features, permissions, and more to help you get the most out of the bot."
+---
+
+Whether you are just getting started or looking to unlock a specific feature, this page covers the questions our community asks most often. If you cannot find what you are looking for here, join our support server and a team member will be happy to help.
+
+<AccordionGroup>
+
+  <Accordion title="How do I invite XRYPTON to my server?">
+    You can invite XRYPTON in two ways:
+
+    - Run the `/invite` command in any server where XRYPTON is already present. The bot will send you a direct invite link.
+    - Visit **[xrypton.vercel.app](https://xrypton.vercel.app)** and click the **Invite** button on the homepage.
+
+    When authorising the bot, make sure you grant all requested permissions. XRYPTON requires **Administrator** permission (or a precise set of specific permissions) to function correctly. Granting fewer permissions may cause certain features to silently fail.
+  </Accordion>
+
+  <Accordion title="How do I change the bot's prefix?">
+    XRYPTON's default prefix is `,` (comma). You can change it at any time with the prefix command:
+
+    ```
+    ,prefix <new_prefix>
+    ```
+
+    For example, `,prefix !` switches your server's prefix to `!`. Only members with **Manage Server** (or Administrator) permission can change the prefix. If you ever forget what prefix your server is using, mention the bot directly — `@XRYPTON prefix` — and it will remind you.
+
+    <Tip>
+      Keep your prefix short and unique so it does not clash with other bots in your server.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Can I use slash commands instead of prefix commands?">
+    Yes — XRYPTON supports **hybrid commands**, meaning the vast majority of commands work with both the `/` slash syntax and the `,` prefix syntax interchangeably.
+
+    There are two exceptions:
+
+    - **VoiceMaster** commands are prefix-only and do not have slash command equivalents.
+    - **Ticket** commands are also prefix-only.
+
+    For everything else, feel free to use whichever style you prefer. Slash commands show argument hints directly in Discord, which can be helpful when you are exploring a command for the first time.
+  </Accordion>
+
+  <Accordion title="Why is the bot not responding to my commands?">
+    There are several common reasons XRYPTON might not respond:
+
+    - **Wrong prefix** — Your server may have a custom prefix set. Mention the bot (`@XRYPTON`) to check.
+    - **Missing permissions** — XRYPTON needs permission to **Read Messages**, **Send Messages**, and **View Channel** in the channel you are using.
+    - **Bot is offline** — Check XRYPTON's status indicator in the member list. If it shows offline, the bot may be restarting; wait a moment and try again.
+    - **Rate limit hit** — XRYPTON enforces a limit of **3 commands per 5 seconds per user** and **4 commands per 5 seconds per channel**. If you have been sending commands quickly, wait a few seconds before trying again.
+    - **Privileged intents not enabled** — XRYPTON requires all privileged intents to be enabled on the bot application. If you are self-hosting, confirm this in the Discord Developer Portal.
+
+    <Note>
+      If none of the above apply, visit our support server for real-time help from the team.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Who can enable Anti-Nuke?">
+    Anti-Nuke is a powerful protection system, and for that reason it is restricted to the **server owner** only. Even members with Administrator permission cannot enable or disable Anti-Nuke — this is intentional to prevent privilege escalation attacks.
+
+    Once the server owner enables Anti-Nuke, they can configure thresholds, actions, and whitelists. Other trusted admins can be whitelisted so their legitimate moderation actions are never flagged.
+  </Accordion>
+
+  <Accordion title="How do I whitelist someone from Anti-Nuke or Anti-Raid?">
+    To prevent Anti-Nuke or Anti-Raid from acting on a trusted administrator's actions, the server owner can add that member to the whitelist:
+
+    ```
+    ,antinuke whitelist add @user
+    ,antiraid whitelist add @user
+    ```
+
+    Whitelisted users can perform bulk moderation actions (such as banning, channel deletions, or role changes) without triggering XRYPTON's automated protection responses. Always keep the whitelist limited to fully trusted team members.
+
+    <Warning>
+      Whitelisted users bypass Anti-Nuke thresholds entirely. Only whitelist accounts you completely trust.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Can I customize the bot's name and avatar per server?">
+    Discord does not allow bots to have different names or avatars on a per-server basis — any nickname or avatar change applies account-wide. However, a server administrator **can** give XRYPTON a server-specific nickname via Discord's built-in **Edit Nickname** feature on the bot's profile, which changes how the bot's name appears only within your server.
+
+    Note that changing the bot's nickname does not affect how commands or mentions work.
+  </Accordion>
+
+  <Accordion title="How do I set up a ticket system?">
+    Ticket commands are **prefix-only**. To get started:
+
+    ```
+    ,ticket setup
+    ```
+
+    This will guide you through selecting a support channel, setting a category for ticket threads, and configuring the panel message. Once set up, members can open tickets by clicking the button in the panel. Staff with the configured support role will be added to each ticket automatically.
+
+    <Tip>
+      Use `,ticket addstaff @role` to assign your support team so they are always pulled into new tickets.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="How do I start a giveaway?">
+    Use the giveaway command with the duration, number of winners, and prize:
+
+    ```
+    ,giveaway start <duration> <winners> <prize>
+    ```
+
+    For example: `,giveaway start 24h 2 Discord Nitro` starts a 24-hour giveaway for 2 winners. XRYPTON posts an embed with a 🎉 reaction button; members enter by clicking it.
+
+    Other useful giveaway commands:
+    - `,giveaway end <message_id>` — End a giveaway early.
+    - `,giveaway reroll <message_id>` — Pick a new winner.
+    - `,giveaway list` — View all active giveaways.
+  </Accordion>
+
+  <Accordion title="What are fake permissions?">
+    Fake permissions (also called **fakeperms**) let server owners grant members elevated command access within XRYPTON without giving them actual Discord role permissions. For example, you could allow a member to use ban-level XRYPTON commands without giving them the real **Ban Members** Discord permission.
+
+    ```
+    ,fakeperm add @user ban_members
+    ```
+
+    This is useful for partial trust scenarios — you can delegate specific bot capabilities without handing out broad administrative power.
+  </Accordion>
+
+  <Accordion title="Can XRYPTON work in DMs?">
+    A small number of informational commands (such as `/invite` and `/help`) can be used in DMs. However, most of XRYPTON's features — moderation, leveling, economy, tickets, Anti-Nuke, and so on — are server-specific and require a server context to function. You will need to use those commands inside your server.
+  </Accordion>
+
+  <Accordion title="How do I reset a member's level?">
+    Server administrators can reset a member's XP and level with:
+
+    ```
+    ,level reset @user
+    ```
+
+    To reset the entire server's leaderboard:
+
+    ```
+    ,level resetall
+    ```
+
+    <Warning>
+      `resetall` is irreversible. All XP data for every member in your server will be permanently deleted.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="What is VoiceMaster?">
+    VoiceMaster is XRYPTON's dynamic voice channel system. When a member joins a designated "Join to Create" channel, XRYPTON automatically creates a private voice channel just for them. The member becomes the owner of that channel and can:
+
+    - Rename it, set a user limit, and lock or unlock it.
+    - Permit or ban specific users from joining.
+    - Transfer ownership to another member.
+
+    The channel is automatically deleted once everyone leaves. VoiceMaster commands are **prefix-only** — use `,vm help` for the full command list.
+  </Accordion>
+
+  <Accordion title="How do I contact support?">
+    The fastest way to get help is through our **official support server**. Run `/invite` in any XRYPTON-enabled server or visit **[xrypton.vercel.app](https://xrypton.vercel.app)** to find the support server link. You can also browse the full command reference on the website for detailed usage examples.
+  </Accordion>
+
+</AccordionGroup>

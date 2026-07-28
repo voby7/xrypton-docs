@@ -1,0 +1,146 @@
+---
+title: "AI-Powered Tools: Chat, Images, and Text-to-Speech"
+sidebarTitle: "AI Tools"
+description: "Ask questions, generate images, and convert text to speech directly in Discord using XRYPTON's built-in AI commands — no external tools needed."
+---
+
+XRYPTON brings AI capabilities straight into your Discord server or DMs. Whether you need a quick answer to a question, a custom-generated image, or an audio clip from written text, all three features are available as simple slash commands. Every AI command works in servers, DMs, and private channels alike.
+
+<CardGroup cols={3}>
+  <Card title="/ask" icon="comment-dots">
+    Ask the AI any question and receive a text response powered by the `kai/step-3.7` model.
+  </Card>
+  <Card title="/imagine" icon="image">
+    Describe a scene or idea in text and get a generated image back instantly.
+  </Card>
+  <Card title="/tts" icon="volume-high">
+    Convert any written text into a spoken audio file you can play directly in Discord.
+  </Card>
+</CardGroup>
+
+---
+
+## Ask the AI a Question
+
+Use `/ask` to send a prompt to XRYPTON's AI and receive a conversational response. The bot uses the `kai/step-3.7` model and is set up to be helpful, direct, and unrestricted in its answers.
+
+```
+/ask <question>
+```
+
+**Aliases:** `gpt`
+
+<Steps>
+  <Step title="Type your command">
+    Run `/ask` followed by your question or prompt. For example:
+
+    ```
+    /ask What is the speed of light in a vacuum?
+    ```
+  </Step>
+  <Step title="Wait for the response">
+    XRYPTON will show a typing indicator while the AI processes your request. This usually takes a few seconds.
+  </Step>
+  <Step title="Read the answer">
+    The response appears in an embed with your username in the title. If the response exceeds 4,000 characters, XRYPTON automatically attaches it as a `response.txt` file instead.
+  </Step>
+</Steps>
+
+<Note>
+  Your question must be **4,000 characters or fewer**. If you exceed this limit, XRYPTON will warn you before sending anything to the AI.
+</Note>
+
+<Accordion title="Tips for better AI responses">
+  - **Be specific.** Instead of "explain coding," try "explain what a Python decorator does with a short example."
+  - **Provide context.** If your question is part of an ongoing topic, include the relevant background in your prompt.
+  - **Ask for formats.** You can request bullet points, numbered lists, or code blocks by including that in your question — for example, "List the steps as a numbered list."
+  - **Iterate.** If the first response isn't quite right, refine your prompt and ask again.
+</Accordion>
+
+---
+
+## Generate an Image
+
+Use `/imagine` to produce an AI-generated image from a text description. XRYPTON sends back up to four images based on your prompt.
+
+```
+/imagine <prompt>
+```
+
+**Aliases:** `prompt`
+
+<Steps>
+  <Step title="Describe your image">
+    Run `/imagine` with a detailed description. The more descriptive you are, the closer the result will match your vision:
+
+    ```
+    /imagine a neon-lit cyberpunk city at night with rain reflecting off the streets
+    ```
+  </Step>
+  <Step title="Wait for generation">
+    XRYPTON shows a typing indicator while the image is being created. Generation typically takes a few seconds.
+  </Step>
+  <Step title="View your images">
+    The bot replies with up to four generated images displayed as embeds. Your original prompt is shown in the first embed's description.
+  </Step>
+</Steps>
+
+<Note>
+  Your prompt must be **1,000 characters or fewer**. Keep descriptions concise but vivid.
+</Note>
+
+<Tip>
+  Strong image prompts usually include a **subject**, a **style or medium**, a **mood or lighting**, and a **setting**. For example: *"a lone astronaut sitting on a crater rim, oil painting style, golden hour lighting, vast alien desert in the background."*
+</Tip>
+
+<Accordion title="Tips for better image prompts">
+  - **Include art styles.** Words like "watercolor," "pixel art," "photorealistic," or "oil painting" shift the visual style significantly.
+  - **Specify lighting.** Terms like "golden hour," "neon," "soft diffused light," or "dramatic shadows" dramatically change the atmosphere.
+  - **Mention a perspective.** "Close-up portrait," "wide establishing shot," or "bird's-eye view" help control composition.
+  - **Avoid vague words alone.** "Cool" or "nice" don't translate well — pair them with concrete descriptors.
+  - **Iterate freely.** Re-run the same prompt to get different variations, or tweak a few words to explore new directions.
+</Accordion>
+
+---
+
+## Text-to-Speech
+
+Use `/tts` to convert written text into an audio file. XRYPTON processes your text and returns a downloadable `.mp3` or `.wav` file you can play directly in Discord.
+
+```
+/tts <text>
+```
+
+<Steps>
+  <Step title="Write your text">
+    Run `/tts` followed by the text you want spoken:
+
+    ```
+    /tts Welcome to the server, everyone! Glad you could join us.
+    ```
+  </Step>
+  <Step title="Optionally choose a voice">
+    You can specify a voice model by appending a valid voice name as the **last word** of your text. If no voice is specified, the default `aura` voice is used:
+
+    ```
+    /tts Hello from XRYPTON! helios
+    ```
+  </Step>
+  <Step title="Receive your audio file">
+    XRYPTON replies with an embed confirming the voice used and attaches the audio file (`xrypton_tts.mp3` or `xrypton_tts.wav`). Click the file to play it inline in Discord.
+  </Step>
+</Steps>
+
+<Note>
+  Your text must be **2,000 characters or fewer**. Text-only input (with no voice name appended) always uses the `aura` voice by default.
+</Note>
+
+<Warning>
+  If you include a word at the end of your text that happens to match a valid voice name, XRYPTON will interpret it as a voice selector and strip it from the spoken output. Double-check your final word if you notice missing text in the audio.
+</Warning>
+
+<Accordion title="Tips for better TTS results">
+  - **Use punctuation.** Commas, periods, and question marks help the TTS engine pace the speech naturally.
+  - **Spell out numbers and abbreviations** if you want them spoken a specific way — for example, write "twenty five" instead of "25" if the numeric reading sounds off.
+  - **Test shorter clips first.** If you are crafting a long message, test the rhythm with a short version before committing to the full text.
+</Accordion>

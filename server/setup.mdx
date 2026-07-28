@@ -1,0 +1,260 @@
+---
+title: "Configure Your Server with XRYPTON Setup Tools"
+sidebarTitle: "Setup"
+description: "Set up welcome and leave messages, prefixes, aliases, auto-roles, sticky messages, boost messages, booster roles, autoresponders, and fake permissions."
+---
+
+XRYPTON's server-setup features let you personalise every aspect of member management and automation without writing a single line of code. Each section below covers a feature group along with its commands and available options. Most of these are hybrid commands — they work both as prefix commands (e.g. `,welcome add`) and as slash commands (e.g. `/welcome add`).
+
+---
+
+## Welcome Messages
+
+Send a custom message to a channel whenever a new member joins.
+
+**Permission:** Manage Messages
+
+```bash
+/welcome add #channel <message>   # create or update a welcome message
+/welcome remove #channel          # remove the welcome message for a channel
+/welcome view #channel            # preview the welcome message
+/welcome list                     # list all configured welcome channels
+/welcome variables                # view all available placeholder variables
+```
+
+<Accordion title="Available welcome variables">
+
+**User variables**
+
+| Variable | Description |
+|---|---|
+| `{user}` | Member object |
+| `{user.name}` | Username |
+| `{user.mention}` | Mention (`@Username`) |
+| `{user.avatar}` | Avatar URL |
+| `{user.discriminator}` | Discriminator (legacy tag) |
+| `{user.joined_at}` | Time the member joined |
+| `{user.created_at}` | Account creation date |
+
+**Guild variables**
+
+| Variable | Description |
+|---|---|
+| `{guild.name}` | Server name |
+| `{guild.count}` | Member count (raw number) |
+| `{guild.count.format}` | Member count (formatted, e.g. 1,234) |
+| `{guild.id}` | Server ID |
+| `{guild.created_at}` | Server creation date |
+| `{guild.boost_count}` | Total boosts |
+| `{guild.boost_count.format}` | Total boosts (formatted) |
+| `{guild.booster_count}` | Number of boosters |
+| `{guild.booster_count.format}` | Boosters (formatted) |
+| `{guild.boost_tier}` | Current boost tier |
+| `{guild.vanity}` | Vanity invite URL |
+| `{guild.icon}` | Server icon URL |
+
+**Special variables**
+
+| Variable | Description |
+|---|---|
+| `{invisible}` | Invisible embed spacer |
+| `{botcolor}` | XRYPTON's brand colour |
+
+</Accordion>
+
+<Tip>
+  You can use [embed syntax](https://xrypton.vercel.app/) in your welcome messages to send rich embeds instead of plain text.
+</Tip>
+
+---
+
+## Leave Messages
+
+Send a message when a member leaves the server.
+
+**Permission:** Manage Messages  
+Leave messages support the same placeholder variables as welcome messages.
+
+```bash
+/leaves add #channel <message>   # add or update a leave message
+/leaves remove #channel          # remove the leave message for a channel
+/leaves test                     # preview all leave messages in the server
+/leaves list                     # list all configured leave channels
+/leaves variables                # view all available placeholder variables
+```
+
+---
+
+## Prefix
+
+Change or reset the bot's command prefix for your server (default: `,`).
+
+**Permission:** Manage Messages
+
+```bash
+/prefix add !           # change the prefix to !
+/prefix remove          # reset the prefix back to ,
+/prefix                 # display the current prefix
+```
+
+---
+
+## Custom Aliases
+
+Map a short word to any existing XRYPTON command. Aliases are guild-specific.
+
+**Permission:** Manage Server
+
+```bash
+/alias add <alias> <command>   # create a new alias
+/alias remove <alias>          # delete an alias
+/alias list                    # view all aliases in this server
+```
+
+**Example:**
+
+```bash
+/alias add warn moderation ban   # ,warn now runs the ban command
+```
+
+<Note>
+  You cannot shadow an existing XRYPTON command name. The alias name must not already be a registered command.
+</Note>
+
+---
+
+## Auto-Roles
+
+Automatically assign roles to every new member that joins.
+
+**Permission:** Manage Roles
+
+```bash
+/autorole add @Role      # add a role to the auto-assign list
+/autorole remove @Role   # remove a role from the auto-assign list
+/autorole list           # view all configured auto-roles
+```
+
+Multiple auto-roles are supported. All configured roles are assigned simultaneously when a member joins.
+
+---
+
+## Sticky Messages
+
+A sticky message is re-sent to the bottom of a channel every time someone sends a new message — keeping important information always visible.
+
+**Permission:** Manage Server
+
+```bash
+/stickymessage add #channel <message>   # set a sticky message
+/stickymessage remove #channel          # remove the sticky message
+```
+
+<Note>
+  Each channel can have only one sticky message at a time. Remove the existing one before setting a new one.
+</Note>
+
+---
+
+## Boost Messages
+
+Send a custom message to a channel when a member boosts your server.
+
+**Permission:** Manage Messages
+
+```bash
+/boosts add #channel <message>   # add or update a boost message
+/boosts remove #channel          # remove the boost message for a channel
+/boosts view #channel            # preview the boost message
+/boosts list                     # list all configured boost channels
+```
+
+Boost messages support the same placeholder variables as welcome messages.
+
+---
+
+## Booster Roles
+
+Allow server boosters to create and customise a personal role. Requires the booster role module to be enabled first.
+
+**Permission:** Administrator (setup/disable); no extra permission required for personal customisation commands
+
+<Steps>
+  <Step title="Enable the module">
+    ```bash
+    /boosterrole setup
+    ```
+    Enables the booster role system for your server.
+  </Step>
+  <Step title="Set a base role (optional)">
+    ```bash
+    /boosterrole base @Role
+    ```
+    All new booster roles will be positioned just below this role in the hierarchy.
+  </Step>
+  <Step title="Boosters create and customise their role">
+    ```bash
+    /boosterrole create           # create your personal booster role
+    /boosterrole name My Role     # rename it
+    /boosterrole colour #FF5733   # set a hex colour
+    /boosterrole icon :emoji:     # set a role icon (requires server Level 2)
+    /boosterrole delete           # delete your booster role
+    ```
+  </Step>
+  <Step title="Disable the module">
+    ```bash
+    /boosterrole disable
+    ```
+    Turns off the booster role system for your server.
+  </Step>
+</Steps>
+
+<Warning>
+  Role icons require your server to have at least **Level 2** boost status.
+</Warning>
+
+---
+
+## Autoresponders
+
+Automatically reply with a set response whenever a message matches a trigger phrase.
+
+**Permission:** Manage Server
+
+```bash
+/autoresponder add <trigger> <response>   # create a new autoresponder
+/autoresponder delete <trigger>           # remove an autoresponder
+/autoresponder list                       # view all autoresponders
+```
+
+**Example:**
+
+```bash
+/autoresponder add "discord rules" "Read our rules at #rules!"
+```
+
+---
+
+## Fake Permissions
+
+Grant a role permission to use XRYPTON commands that would normally require a Discord permission they don't have. This does **not** grant actual Discord permissions — it only affects XRYPTON command checks.
+
+**Permission:** Administrator
+
+```bash
+/fakeperms add @Role <permission>     # grant a fake permission to a role
+/fakeperms remove @Role <permission>  # revoke a fake permission from a role
+/fakeperms list @Role                 # list all fake permissions for a role
+/fakeperms perms                      # view all valid permission names
+```
+
+**Example:**
+
+```bash
+/fakeperms add @Moderator ban_members
+# The Moderator role can now use ,ban even without the Discord Ban Members permission
+```
+
+<Tip>
+  Use `/fakeperms perms` to see the full list of valid permission strings before adding them. Permission names use underscores (e.g. `manage_messages`).
+</Tip>

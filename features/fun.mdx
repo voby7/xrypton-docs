@@ -1,0 +1,162 @@
+---
+title: "Fun Commands and Roleplay Actions in XRYPTON"
+sidebarTitle: "Fun"
+description: "Flip coins, ship users, consult the 8-ball, calculate expressions, and act out anime-style roleplay actions with GIF responses — all inside Discord."
+---
+
+XRYPTON's Fun and Roleplay categories are built for casual, social moments in your server. Fun commands cover everything from quick coin flips and magic 8-ball answers to ships, ratings, and interactive buttons. Roleplay commands let you express actions like hugs, slaps, and high-fives with animated GIF responses pulled from anime. Both categories work in servers, DMs, and private channels.
+
+---
+
+## Fun Commands
+
+<CardGroup cols={2}>
+  <Card title="say" icon="comment">
+    Make XRYPTON repeat a message in the current channel.
+  </Card>
+  <Card title="coinflip" icon="coins">
+    Flip a coin and get Heads or Tails.
+  </Card>
+  <Card title="8ball" icon="circle-question">
+    Ask the magic 8-ball any yes/no question.
+  </Card>
+  <Card title="hotcalc" icon="fire">
+    Find out how hot someone is (as a percentage).
+  </Card>
+  <Card title="howgay" icon="rainbow">
+    Calculate someone's gay percentage.
+  </Card>
+  <Card title="ppsize" icon="ruler">
+    Measure someone's pp length.
+  </Card>
+  <Card title="rate" icon="star">
+    Rate anything on a scale of 0–100.
+  </Card>
+  <Card title="math" icon="calculator">
+    Evaluate a safe mathematical expression.
+  </Card>
+  <Card title="ship" icon="heart">
+    Ship two users together and see their love percentage.
+  </Card>
+  <Card title="button" icon="hand-pointer">
+    Create an interactive button with a custom message response.
+  </Card>
+  <Card title="nitro" icon="gift">
+    Send a fake Nitro gift that rickrolls anyone who clicks Claim.
+  </Card>
+</CardGroup>
+
+### Command Reference
+
+| Command | Aliases | Usage | Description |
+|---|---|---|---|
+| `say` | — | `/say <message>` | Makes XRYPTON echo your message. Mentions are safely escaped. |
+| `coinflip` | `cf`, `coinf` | `/coinflip` | Flips a coin and returns Heads or Tails. |
+| `8ball` | — | `/8ball <question>` | Consults the magic 8-ball for an answer. |
+| `hotcalc` | — | `/hotcalc [@user]` | Rates how hot a user is (0–100%). Defaults to you. |
+| `howgay` | `gayrate` | `/howgay [@user]` | Rates a user's gay percentage (0–100%). Defaults to you. |
+| `ppsize` | `pp` | `/ppsize [@user]` | Displays a user's pp size as a visual bar. Defaults to you. |
+| `rate` | — | `/rate <thing>` | Rates any word, name, or phrase out of 100. |
+| `math` | `calc`, `calculate` | `/math <expression>` | Evaluates a math expression safely (no function calls). |
+| `ship` | — | `/ship <user1> [@user2]` | Ships two users and shows a love percentage bar. |
+| `button` | — | `/button <title> <text> [style] [timeout]` | Creates a button that sends a message when clicked. |
+| `nitro` | — | `/nitro` | Sends a fake Nitro gift embed that rickrolls on click. |
+
+### Detailed Usage
+
+<Accordion title="/say — Make the bot speak">
+  ```
+  /say Hello everyone, welcome to the server!
+  ```
+  XRYPTON will post the message in the current channel. All `@` mentions and `&` role pings are escaped, so you cannot use this to ping members maliciously.
+</Accordion>
+
+<Accordion title="/math — Safe expression evaluator">
+  ```
+  /math 2 + 2 * 10
+  /math (100 / 4) ** 2
+  ```
+  Supports addition (`+`), subtraction (`-`), multiplication (`*`), division (`/`), and exponentiation (`**`). Expressions are limited to 200 characters and have a 2-second execution timeout.
+
+  <Warning>
+    Division by zero and results over 1×10¹⁰⁰⁰ are rejected with an error message.
+  </Warning>
+</Accordion>
+
+<Accordion title="/ship — Ship two users">
+  ```
+  /ship @Alice @Bob
+  /ship @Alice
+  ```
+  If you only provide one user, XRYPTON ships them with you. The result shows both mentions, a love percentage, and a ❤ bar (or 💔 if it's 0%).
+</Accordion>
+
+<Accordion title="/button — Interactive button creator">
+  ```
+  /button "Click me" "You found the secret!" green 120
+  ```
+  **Parameters:**
+  - `title` — Label shown on the button (max 80 characters)
+  - `text` — Message shown ephemerally when clicked
+  - `style` — `blurple` (default), `green`, `grey`, `red`, or `link`
+  - `timeout` — Seconds before the button disables (max 240)
+
+  When `style` is set to `link`, the `text` parameter must be a valid URL. The button will open that URL instead of sending a message.
+</Accordion>
+
+<Accordion title="/nitro — Fake Nitro gift">
+  ```
+  /nitro
+  ```
+  Sends a convincing fake Nitro subscription embed with a **Claim** button. Anyone who clicks Claim receives a rickroll link — visible only to them. The button disables after 240 seconds.
+</Accordion>
+
+---
+
+## Roleplay Commands
+
+Roleplay commands let you perform expressive actions toward other users. Each command fetches a fresh anime GIF from [nekos.best](https://nekos.best) and displays it in an embed with a counter tracking how many times you have performed that action toward a specific person. The target can click the **reaction button** in the embed to respond in kind.
+
+<Note>
+  All roleplay commands work in **servers, DMs, and private channels**. The user target is optional — if omitted, most actions default to yourself.
+</Note>
+
+```
+/roleplay <action> [@user]
+```
+
+**Aliases:** `rp`
+
+### Roleplay Command Reference
+
+| Command | Usage | Description |
+|---|---|---|
+| `slap` | `/roleplay slap [@user]` | Slap someone with a GIF. |
+| `hug` | `/roleplay hug [@user]` | Give someone a warm hug. |
+| `kiss` | `/roleplay kiss [@user]` | Kiss someone. |
+| `bite` | `/roleplay bite [@user]` | Bite someone. |
+| `baka` | `/roleplay baka [@user]` | Call someone a baka. |
+| `cuddle` | `/roleplay cuddle [@user]` | Cuddle up with someone. |
+| `feed` | `/roleplay feed [@user]` | Feed someone. |
+| `handhold` | `/roleplay handhold [@user]` | Hold hands with someone. |
+| `handshake` | `/roleplay handshake [@user]` | Shake hands with someone. |
+| `highfive` | `/roleplay highfive [@user]` | High five someone. |
+| `kick` | `/roleplay kick [@user]` | Kick someone. |
+| `pat` | `/roleplay pat [@user]` | Pat someone on the head. |
+| `punch` | `/roleplay punch [@user]` | Punch someone. |
+| `peck` | `/roleplay peck [@user]` | Give someone a peck. |
+| `poke` | `/roleplay poke [@user]` | Poke someone. |
+| `shoot` | `/roleplay shoot [@user]` | Shoot at someone. |
+| `cry` | `/roleplay cry` | Let it all out — no target needed. |
+
+### How the Action Counter Works
+
+Every time you perform a roleplay action toward a specific user, XRYPTON records it. The embed description shows the ordinal count: *"@You hugs @Them for the **3rd** time!"* This persists across sessions, so your count with any given person keeps growing.
+
+### Responding to a Roleplay Action
+
+When someone uses a roleplay command on you, the embed includes a **reaction button** (e.g. "Hug back," "Slap back"). Only you — the target — can click it. Clicking it triggers a new roleplay embed in the opposite direction, with its own counter and GIF.
+
+<Tip>
+  You can only click the reaction button **once** per embed. After you respond, the button becomes disabled. If you want to start a back-and-forth, keep using the commands!
+</Tip>

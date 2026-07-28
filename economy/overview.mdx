@@ -1,0 +1,168 @@
+---
+title: "XRYPTON Economy: Earn Coins, Fish, and Shop"
+sidebarTitle: "Economy"
+description: "Learn how to earn coins, go fishing for rare catches, browse the shop, and manage your inventory in XRYPTON's full-featured economy system."
+---
+
+XRYPTON's economy system gives you a persistent wallet, a full-featured shop, an interactive fishing mini-game, and a personal inventory — all accessible through the economy command group. Whether you're grinding coins through fishing or spending them on gear, everything feeds into one connected progression loop.
+
+## Your Wallet
+
+Your wallet is the foundation of the economy. It tracks your **cash on hand** as well as your **bank balance** (with a personal bank limit). When you check your wallet, XRYPTON generates a personalized card image showing your current cash, bank, and username — and if you're a donor, the card gets a premium dark theme.
+
+```
+/economy wallet
+```
+
+<CardGroup cols={2}>
+  <Card title="Cash" icon="coins">
+    Spendable coins available immediately for games, the shop, and more.
+  </Card>
+  <Card title="Bank" icon="building-columns">
+    Stored coins up to your bank limit. Keeps your savings secure.
+  </Card>
+</CardGroup>
+
+<Note>
+  Your bank has a cap. Check your wallet card to see your current **bank limit** alongside your stored balance.
+</Note>
+
+---
+
+## Ways to Earn Coins
+
+There are several paths to building your coin balance. The more actively you engage, the faster your wallet grows.
+
+<Accordion title="Gambling Games">
+  Put your coins to work in XRYPTON's suite of economy games — coinflip, mines, rock paper scissors, and towers. Each game lets you wager coins for a chance to multiply your bet. See the [Games page](/economy/games) for full details.
+</Accordion>
+
+<Accordion title="Fishing">
+  Use your Fishing Rod to cast a line every 5 minutes. Each catch pays out coins directly to your wallet, or stores fish in your Fish Bag to sell in bulk. Rarer catches are worth significantly more.
+</Accordion>
+
+<Accordion title="Demo Mode">
+  Not ready to risk real coins? Pass `0` as your bet in any game to play in **demo mode** — nothing is won or lost, but you can get a feel for the mechanics before wagering.
+</Accordion>
+
+---
+
+## Fishing
+
+Fishing is one of the steadiest ways to earn coins. You cast a line, reel in a catch, and either pocket the coins immediately or store the fish in your bag to sell later.
+
+<Steps>
+  <Step title="Buy a Fishing Rod">
+    Head to the shop and purchase a **Fishing Rod** (💵 15,000). Without one, the fishing command will tell you that you're missing the required tool.
+
+    ```
+    /economy shop
+    ```
+  </Step>
+  <Step title="Cast your line">
+    Run the fish command to go fishing. XRYPTON rolls a weighted catch from the full fish pool and either deposits its value directly into your wallet or stows it in your Fish Bag.
+
+    ```
+    /economy fish
+    ```
+  </Step>
+  <Step title="Wait out the cooldown">
+    You can fish once every **5 minutes**. If you try again too soon, XRYPTON will show you exactly when your next cast is ready.
+  </Step>
+  <Step title="Sell your stored fish (optional)">
+    If you own a Fish Bag, your catches are stored rather than auto-sold. Use the sell command to cash out your bag whenever you're ready.
+
+    ```
+    /economy sell
+    ```
+  </Step>
+</Steps>
+
+### Fish Rarities & Values
+
+Fish are drawn from a weighted pool spanning four rarity tiers. Higher rarities pay out far more coins but appear far less often.
+
+<CardGroup cols={2}>
+  <Card title="🐟 Common" icon="fish">
+    **Weight: 70** — Anchovy (💵 150) through Cod (💵 380). The bread-and-butter of every fishing session.
+  </Card>
+  <Card title="🦑 Uncommon" icon="fish-fins">
+    **Weight: 20** — Crayfish (💵 1,000) through Blowfish (💵 1,800). A solid upgrade over commons.
+  </Card>
+  <Card title="🐙 Rare" icon="gem">
+    **Weight: 8** — Seahorse (💵 3,500) through Sea Turtle (💵 5,200). Exciting finds worth holding onto.
+  </Card>
+  <Card title="🐉 Mythic" icon="dragon">
+    **Weight: 2** — Golden Fish (💵 7,500) up to the legendary Phoenix Fish (💵 30,000). Extremely rare and enormously valuable.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Buy a **Fish Bag** (💵 50,000) to store every catch instead of auto-selling. This lets you accumulate a haul and sell strategically rather than receiving individual payouts.
+</Tip>
+
+---
+
+## The Shop
+
+The shop is a paginated, interactive storefront where you browse available items and buy them with your wallet balance. It's split into categories — currently the **Coin Shop** is live, with a Star Shop coming soon.
+
+```
+/economy shop
+```
+
+<Steps>
+  <Step title="Open the shop">
+    Run `/economy shop`. A paginated embed appears showing all available items, their prices, and your current balance at a glance.
+  </Step>
+  <Step title="Navigate pages">
+    Use the arrow buttons to page through items if there are more than fit on one screen (up to 6 items per page).
+  </Step>
+  <Step title="Click a buy button">
+    Each item has a **Buy** button beneath it. Clicking it opens a small modal where you enter the quantity you want to purchase.
+  </Step>
+  <Step title="Confirm your purchase">
+    XRYPTON deducts the total cost from your wallet and adds the items to your inventory. A confirmation message shows exactly what you bought and how many coins you have remaining.
+  </Step>
+</Steps>
+
+### Shop Items
+
+<CardGroup cols={2}>
+  <Card title="🎣 Fishing Rod" icon="fishing-rod">
+    **Price: 💵 15,000** — Required to use the `/economy fish` command. Sell it back for 💵 7,500.
+  </Card>
+  <Card title="🎒 Fish Bag" icon="bag-shopping">
+    **Price: 💵 50,000** — Stores your fish catches instead of auto-selling them. Sell it back for 💵 25,000.
+  </Card>
+</CardGroup>
+
+<Warning>
+  You need sufficient coins in your **wallet** (not your bank) to complete a purchase. Make sure your cash on hand covers the full total before buying.
+</Warning>
+
+---
+
+## Inventory
+
+Your inventory keeps track of every item you own — tools, storage, and any fish you've accumulated. Items are grouped by category and displayed in a paginated embed.
+
+```
+/economy inventory
+```
+
+The inventory view shows each item's name, emoji, quantity, and category. If you own nothing yet, you'll be prompted to visit the shop first.
+
+<Tip>
+  Your Fish Bag contents (stored fish) are tracked separately from your regular inventory. Use the fishing sell command to convert your stored catches into coins.
+</Tip>
+
+---
+
+## Multipliers & Bonuses
+
+XRYPTON's economy incorporates a multiplier system that can boost your winnings in games like Mines and Towers. Multipliers scale dynamically based on how far you've progressed in a game session — the more tiles you clear or floors you climb, the higher the payout multiplier grows.
+
+<Note>
+  Multipliers apply to your **original wager**, not your running total. A 3.50x multiplier on a 💵 1,000 bet pays out 💵 3,500 regardless of how many tiles you've already cleared.
+</Note>

@@ -1,0 +1,229 @@
+---
+title: "Fix Common XRYPTON Bot Issues and Errors"
+sidebarTitle: "Troubleshooting"
+description: "Step-by-step solutions for the most common XRYPTON problems — permissions, missing responses, slash commands, Anti-Nuke, leveling, rate limits, and more."
+---
+
+Even with a well-configured bot, things can occasionally go wrong. This page walks you through diagnosing and resolving the most common issues you might encounter with XRYPTON. Work through the relevant section below, and if the problem persists, reach out in the official support server.
+
+<AccordionGroup>
+
+  <Accordion title="Bot is not responding to commands">
+    This is the most reported issue and almost always has a straightforward cause. Work through the steps below in order.
+
+    <Steps>
+      <Step title="Check that the bot is online">
+        Open your server's member list and locate XRYPTON. If its status dot is grey (offline), the bot is temporarily down. Wait a minute and try again. If it remains offline for an extended period, check the support server for status updates.
+      </Step>
+      <Step title="Verify you are using the correct prefix">
+        Your server may have a custom prefix set. Mention the bot directly to find out:
+        ```
+        @XRYPTON prefix
+        ```
+        The bot will reply with the current prefix even if it cannot otherwise respond in that channel.
+      </Step>
+      <Step title="Check channel permissions">
+        XRYPTON must have the following permissions in the channel you are using:
+        - **View Channel**
+        - **Read Message History**
+        - **Send Messages**
+        - **Embed Links**
+
+        Go to **Channel Settings → Permissions**, find XRYPTON's role, and confirm these are all enabled.
+      </Step>
+      <Step title="Check for rate limiting">
+        XRYPTON enforces a limit of **3 commands per 5 seconds per user** and **4 commands per 5 seconds per channel**. If you have been firing commands quickly, slow down and wait 5–10 seconds before trying again.
+      </Step>
+    </Steps>
+
+    <Note>
+      If the bot responds in other channels but not a specific one, the issue is almost certainly that channel's permission overrides rather than a global outage.
+    </Note>
+  </Accordion>
+
+  <Accordion title='"Missing Permissions" error message'>
+    When XRYPTON returns a **Missing Permissions** error, it means the bot lacks a Discord permission required to carry out your request — for example, banning a member without the **Ban Members** permission.
+
+    <Steps>
+      <Step title="Identify which permission is missing">
+        The error message usually names the required permission. Note it down.
+      </Step>
+      <Step title="Check XRYPTON's role in Server Settings">
+        Go to **Server Settings → Roles**, find XRYPTON's bot role, and toggle on the missing permission.
+      </Step>
+      <Step title="Check channel-level overrides">
+        Even if the role has a permission server-wide, a channel override can deny it. Visit **Channel Settings → Permissions → XRYPTON** and remove any explicit **Deny** entries.
+      </Step>
+      <Step title="Confirm role hierarchy">
+        XRYPTON cannot moderate members whose highest role is equal to or above XRYPTON's own highest role. Drag XRYPTON's role higher in **Server Settings → Roles** so it sits above the roles of the members it needs to manage.
+      </Step>
+    </Steps>
+
+    <Warning>
+      The safest setup is to grant XRYPTON **Administrator** permission. If you prefer a minimal-permission setup, ensure every permission listed during the invite flow is manually enabled.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Slash commands are not appearing">
+    If `/` commands are not showing up in the Discord command picker, try the following:
+
+    <Steps>
+      <Step title="Wait a few minutes">
+        Discord can take up to a few minutes to sync a bot's slash commands globally after an invite or update. Reload your Discord client (`Ctrl+R` / `Cmd+R`) and check again.
+      </Step>
+      <Step title="Re-invite the bot with correct scopes">
+        The invite link must include both the `bot` **and** `applications.commands` OAuth2 scopes. If you used an old or incomplete invite link, re-invite XRYPTON using the link at **[xrypton.vercel.app](https://xrypton.vercel.app)** or via `/invite` from another server.
+      </Step>
+      <Step title="Check Discord's integration settings">
+        Go to **Server Settings → Integrations → XRYPTON** and confirm that slash commands are not disabled or restricted to specific channels/roles.
+      </Step>
+    </Steps>
+
+    <Note>
+      Remember that **VoiceMaster** and **Ticket** commands are prefix-only — they will never appear in the slash command picker regardless of sync status.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Anti-Nuke is triggering on legitimate admin actions">
+    If Anti-Nuke is flagging actions performed by a trusted administrator, you need to add that administrator to the whitelist. Only the **server owner** can manage the Anti-Nuke whitelist.
+
+    <Steps>
+      <Step title="Identify the flagged user">
+        Check the Anti-Nuke log channel to see which account triggered the alert.
+      </Step>
+      <Step title="Add them to the whitelist">
+        The server owner should run:
+        ```
+        ,antinuke whitelist add @user
+        ```
+      </Step>
+      <Step title="Review your thresholds">
+        If legitimate bulk actions keep hitting the limit, consider raising the action thresholds:
+        ```
+        ,antinuke threshold ban 10
+        ```
+        Adjust the number to a value that suits your server's normal moderation pace.
+      </Step>
+    </Steps>
+
+    <Warning>
+      Whitelisted users are completely exempt from Anti-Nuke checks. Only whitelist accounts you trust unconditionally.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Welcome or leave messages are not working">
+    If XRYPTON is not posting welcome or goodbye messages when members join or leave, run through this checklist.
+
+    <Steps>
+      <Step title="Confirm the feature is configured">
+        Run `,welcome config` (or the equivalent slash command) to view your current settings and confirm a channel has been set.
+      </Step>
+      <Step title="Check bot permissions in the welcome channel">
+        XRYPTON must have **Send Messages** and **Embed Links** in the designated channel. Check **Channel Settings → Permissions**.
+      </Step>
+      <Step title="Ensure the channel still exists">
+        If the welcome channel was deleted and re-created, the saved channel ID will be stale. Re-run the setup command to point XRYPTON at the new channel.
+      </Step>
+      <Step title="Test with a manual trigger">
+        Some setups support a test command such as `,welcome test`. This sends a sample message without anyone actually joining, confirming the configuration is working.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="VoiceMaster channels are not being created">
+    If members join the "Join to Create" channel but no personal voice channel appears, check the following:
+
+    <Steps>
+      <Step title="Verify the setup was completed">
+        Run `,vm setup` to confirm VoiceMaster is configured and that a valid "Join to Create" channel exists.
+      </Step>
+      <Step title="Check Manage Channels permission in the category">
+        XRYPTON needs **Manage Channels** and **Move Members** permissions in the category where it creates voice channels. Go to the category's settings, find XRYPTON's role, and confirm both permissions are granted.
+      </Step>
+      <Step title="Check the channel limit">
+        Discord servers have a maximum of 500 channels. If your server is near this limit, XRYPTON will be unable to create new channels. Archive or delete unused channels to free up space.
+      </Step>
+    </Steps>
+
+    <Note>
+      VoiceMaster commands are prefix-only. Use `,vm help` to view all available subcommands.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Level-up messages are not appearing">
+    If members are earning XP but no level-up notification is being sent, try the steps below.
+
+    <Steps>
+      <Step title="Check the level config toggle">
+        Run `/level config` (or `,level config`) and look for the **level-up messages** toggle. Make sure it is turned **on**.
+      </Step>
+      <Step title="Confirm a level-up channel is set">
+        If you have configured level-up messages to post in a specific channel rather than the channel where the message was sent, verify that channel still exists and that XRYPTON has **Send Messages** and **Embed Links** there.
+      </Step>
+      <Step title="Check for XP ignored channels or roles">
+        Some channels or roles may be excluded from XP gain. Run `,level ignorelist` to review ignored channels and roles. If the member's activity channel is on the ignore list, they will earn no XP and therefore never level up.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Rate limit warnings — commands being ignored">
+    XRYPTON limits command usage to protect server stability:
+
+    - **Per user:** 3 commands per 5 seconds
+    - **Per channel:** 4 commands per 5 seconds
+
+    If you exceed these limits, XRYPTON will silently ignore additional commands or send a rate-limit notice until the window resets.
+
+    **How to avoid this:**
+
+    - Space out your commands by a second or two when running several in succession.
+    - Avoid using command loops or automation scripts that fire commands faster than the limit allows.
+    - If you are running bulk administrative tasks (like mass-assigning roles), consider using XRYPTON's built-in batch commands rather than individual repeated commands.
+
+    <Tip>
+      Rate limits reset every 5 seconds, so a brief pause is all you need before continuing.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Economy commands are not working">
+    If economy commands return errors or produce no output, run through these checks.
+
+    <Steps>
+      <Step title="Check that the economy module is enabled">
+        Run `,economy config` or `/economy config` to confirm the economy system is toggled on for your server. If it is disabled, enable it from that command.
+      </Step>
+      <Step title="Verify the command syntax">
+        Economy commands follow a specific syntax. Run `,help economy` or visit **[xrypton.vercel.app](https://xrypton.vercel.app)** for the full command list and argument descriptions.
+      </Step>
+      <Step title="Check currency and balance settings">
+        If a shop or transfer command fails, confirm the user has sufficient balance using `,balance @user`. A zero or negative balance will prevent purchases and transfers.
+      </Step>
+      <Step title="Look for cooldown messages">
+        Daily reward and work commands have built-in cooldowns. If a member tries to claim their daily reward twice in 24 hours, the command will be declined until the cooldown expires.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Bot has wrong or missing permissions after invite">
+    If XRYPTON was invited without the full set of required permissions, some features will not work as expected.
+
+    <Steps>
+      <Step title="Re-invite using the official link">
+        The safest fix is to use the official invite link from **[xrypton.vercel.app](https://xrypton.vercel.app)** or `/invite`, which pre-selects all required permissions. Re-inviting does not reset any of your existing configurations.
+      </Step>
+      <Step title="Manually grant missing permissions">
+        If you prefer not to re-invite, go to **Server Settings → Roles**, find XRYPTON's bot role, and enable the missing permissions one by one. At minimum, XRYPTON needs:
+        - Administrator (recommended), **or**
+        - Manage Roles, Manage Channels, Kick Members, Ban Members, Manage Messages, Embed Links, Attach Files, Read Message History, Manage Webhooks, View Audit Log, Move Members, Mute Members.
+      </Step>
+      <Step title="Verify the role hierarchy">
+        Make sure XRYPTON's role is positioned **above** all roles it needs to assign, remove, or manage in **Server Settings → Roles**.
+      </Step>
+    </Steps>
+
+    <Note>
+      Granting **Administrator** is the simplest and most reliable setup. XRYPTON does not abuse this permission — it is needed to ensure every feature works without manual per-channel tuning.
+    </Note>
+  </Accordion>
+
+</AccordionGroup>

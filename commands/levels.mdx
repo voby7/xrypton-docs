@@ -1,0 +1,83 @@
+---
+title: "Leveling and XP Commands Reference for XRYPTON"
+sidebarTitle: "Levels"
+description: "Reference for XRYPTON's leveling system — view rank, tune XP settings, configure level-up notifications, assign role rewards, and set XP multipliers."
+---
+
+XRYPTON's leveling system rewards members for activity in your server. Every message a member sends has a chance to grant them XP, which accumulates into levels over time. Admins can fine-tune everything from the XP range per message to automatic role rewards at specific milestones. The system is disabled by default and must be toggled on before any other configuration takes effect.
+
+## Rank
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `rank` | `rank [@member]` | Display a member's current level, XP, and a visual progress bar toward the next level. Defaults to your own rank if no member is specified. | None |
+
+---
+
+## Level Configuration
+
+All `level` subcommands manage the behavior of the leveling system. Most require **Manage Server**.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `level` | `level` | Show the leveling module help menu. | None |
+| `level toggle` | `level toggle` | Enable or disable the leveling system. Creates a default configuration on first enable. | Manage Server |
+| `level config` | `level config` | Display a full summary of the current leveling configuration, including all settings and notification preferences. | None |
+| `level reset` | `level reset [@member]` | Reset XP and level data. Omit a member to reset the entire server leaderboard. Provide a member to reset only that user. | Administrator |
+| `level leaderboard` | `level leaderboard` | Show the top 10 members ranked by total XP earned. Alias: `lb`. | None |
+| `level cooldown` | `level cooldown <seconds>` | Set the minimum number of seconds between XP grants per user (0–3600). Default is 60 seconds. | Manage Server |
+| `level multiplier` | `level multiplier <value>` | Apply a global XP multiplier to all gains (0.1–10). For example, `2.0` doubles all XP earned. | Manage Server |
+| `level xprange` | `level xprange <min> <max>` | Set the random XP range granted per eligible message. Min must be ≥ 1, max must be ≤ 100. Default is 15–25. | Manage Server |
+| `level maxlevel` | `level maxlevel [max]` | Cap the highest level members can reach. Pass `0` or omit the value to remove the cap entirely. | Manage Server |
+| `level stackroles` | `level stackroles` | Toggle whether members keep all previously earned level roles or only the most recent one. | Manage Server |
+
+---
+
+## Level-Up Notifications
+
+Control where and how members are told they have leveled up.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `level levelup` | `level levelup <dms\|channel\|off>` | Set the destination for level-up messages. `dms` sends a private message, `channel` posts in the channel where the member earned the level, and `off` disables notifications. | Manage Server |
+| `level channel` | `level channel [#channel]` | Designate a specific channel for all level-up messages. Omit the channel argument to clear the setting and fall back to the triggering channel. | Manage Server |
+| `level message` | `level message [template]` | Set a custom level-up message template. Omit the template to reset to the default message. Supports placeholders: `{user}`, `{username}`, `{level}`, `{xp}`, `{total_xp}`, `{guild}`. | Manage Server |
+
+<Tip>
+If you set both `level levelup channel` and `level channel`, the dedicated channel takes priority over the member's current channel. DMs always take priority if `level levelup dms` is set.
+</Tip>
+
+---
+
+## Effort Rewards
+
+Effort rewards grant bonus XP for messages that show extra engagement — longer text, attached images, or being a server booster.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `level effort` | `level effort [on\|off]` | Toggle effort rewards. Run without an argument to view the current status. | Manage Server |
+| `level efforttext` | `level efforttext <characters>` | Set the minimum character count a message must reach to earn bonus XP (10–500). Default is 50 characters. | Manage Server |
+| `level effortimage` | `level effortimage <bonus_xp>` | Set the bonus XP awarded for messages that include an image attachment (0–50 XP). | Manage Server |
+| `level boosterbonus` | `level boosterbonus <bonus_xp>` | Set additional XP granted to server boosters on every eligible message (0–100 XP). | Manage Server |
+
+<Note>
+Effort bonuses stack. A booster who sends a long message with an attachment receives the text bonus, the image bonus, and the booster bonus all at once, on top of the base random XP grant.
+</Note>
+
+---
+
+## Level Role Rewards
+
+Automatically assign a role when a member reaches a specific level milestone.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `level rewards` | `level rewards` | Show the level rewards help menu. | None |
+| `level rewards add` | `level rewards add <level> <role>` | Assign a role as the reward for reaching a given level. Only one role can be set per level. Roles with Administrator or Manage Server permissions cannot be used. | Manage Server |
+| `level rewards remove` | `level rewards remove <level>` | Remove the role reward for a specific level. | Manage Server |
+| `level rewards list` | `level rewards list` | View the first 10 level rewards ordered by level, showing which role is awarded at each milestone. | None |
+| `level rewards reset` | `level rewards reset` | Remove all level role rewards from the server at once. | Administrator |
+
+<Warning>
+You cannot assign a level reward role that has **Administrator** or **Manage Server** permissions. This prevents the leveling system from being exploited to escalate privileges automatically.
+</Warning>

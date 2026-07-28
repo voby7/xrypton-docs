@@ -1,0 +1,116 @@
+---
+title: "Utility and Miscellaneous Commands for XRYPTON"
+sidebarTitle: "Utility"
+description: "Configure tickets, run giveaways, manage embeds, set AFK status, and customise XRYPTON's appearance in your server with these utility commands."
+---
+
+XRYPTON's utility layer handles the practical side of running a Discord server: a full-featured ticket system, giveaway management, a collection of miscellaneous quality-of-life tools, and per-server bot customisation. Most commands require elevated permissions; individual requirements are called out in each section.
+
+---
+
+## Tickets
+
+The ticket system is **prefix-only** (``,ticket …``). It lets you create a support-ticket panel in any channel and manage open tickets, staff roles, categories, and logs.
+
+<Note>
+  All `ticket` subcommands use the prefix `,ticket`. Slash-command equivalents are not available for this module.
+</Note>
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `ticket add` | `,ticket add <@member>` | Add a member to the current ticket channel. Requires **Manage Channels**. |
+| `ticket remove` | `,ticket remove <@member>` | Remove a member from the current ticket channel. Requires **Manage Channels**. |
+| `ticket topics` | `,ticket topics` | Interactively add or remove ticket topics (categories of support). Requires **Administrator**. |
+| `ticket staff` | `,ticket staff [@role]` | Toggle a role as a support-staff role. Omit the role to clear all staff roles. Requires **Administrator**. |
+| `ticket category` | `,ticket category [#category]` | Set the Discord category that new ticket channels are created under. Omit to remove the category. Requires **Administrator**. |
+| `ticket channel` | `,ticket channel [#channel]` | Set the channel where the ticket creation panel is posted. Omit to unset. Requires **Administrator**. |
+| `ticket logs` | `,ticket logs [#channel]` | Set a channel to receive ticket transcripts when tickets are closed. Omit to disable logging. Requires **Administrator**. |
+| `ticket send` | `,ticket send` | Post the ticket creation panel (with the **Create** button) to the configured ticket channel. Requires **Administrator**. |
+| `ticket settings` | `,ticket settings` | Display current ticket configuration: panel channel, logs channel, and category. |
+
+<Tip>
+  A typical setup flow: `,ticket channel #support` → `,ticket category Support Tickets` → `,ticket staff @Support` → `,ticket topics` → `,ticket send`.
+</Tip>
+
+<Warning>
+  Transcripts are only generated and sent to your logs channel if a **logs channel has been configured** via `,ticket logs`. Without it, chat history is deleted silently when a ticket is closed.
+</Warning>
+
+---
+
+## Giveaways
+
+The giveaway module is a hybrid command group (prefix **and** slash). Alias: `gw`. All subcommands require the **Manage Channels** permission.
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `giveaway start` | `,giveaway start <#channel> <duration> <winners> <prize>` | Start a giveaway in the specified channel. `duration` accepts natural strings like `1h`, `30m`, `2d`. Members enter by reacting with 🎉. |
+| `giveaway end` | `,giveaway end <message link>` | End a giveaway early, immediately drawing winners from current entries. |
+| `giveaway reroll` | `,giveaway reroll <message link> [winners]` | Pick new winners from a finished giveaway's entry list. Defaults to 1 new winner. |
+| `giveaway cancel` | `,giveaway cancel <message link>` | Cancel a giveaway and delete its message. |
+| `giveaway list` | `,giveaway list` | Show a paginated list of all active (not yet ended) giveaways in the server. |
+
+<Tip>
+  Pass the full Discord message link (right-click → **Copy Message Link**) for `end`, `reroll`, and `cancel` commands. The bot resolves the giveaway from the message ID automatically.
+</Tip>
+
+<Note>
+  XRYPTON automatically checks for expired giveaways every 10 seconds and draws winners when the end time is reached — you do not need to manually call `giveaway end` unless you want to close it early.
+</Note>
+
+---
+
+## Miscellaneous
+
+General-purpose utility commands available at the top level.
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `afk` | `,afk [reason]` | Mark yourself as AFK with an optional reason (defaults to "AFK"). XRYPTON will notify anyone who mentions you and auto-remove your AFK when you next send a message. |
+| `urban` | `,urban <word>` | Look up a word on Urban Dictionary. Results are paginated. Alias: `urbandictionary` |
+| `quickpoll` | `,quickpoll` | React to your own message with ⬆️ and ⬇️ thumbs to create an instant poll. Alias: `qp` |
+| `screenshot` | `,screenshot <url>` | Take a screenshot of any public website and post it as an image. Alias: `ss` |
+| `createembed` | `,createembed <script>` | Build and send a richly formatted embed using XRYPTON's embed script syntax. Requires **Manage Messages**. Aliases: `ce`, `script` |
+| `embedcode` | `,embedcode <message link>` | Extract the embed script from an existing embed message so you can reuse or modify it. Alias: `ec` |
+| `pin` | `,pin` | Pin the message you reply to. Requires **Manage Messages**. |
+| `unpin` | `,unpin` | Unpin the message you reply to. Requires **Manage Messages**. |
+| `suggest` | `,suggest <suggestion>` | Submit a feature suggestion directly to the XRYPTON development team. Alias: `suggestion` |
+| `donate` | `,donate` | Learn why XRYPTON doesn't accept donations and how you can support the project instead. |
+
+<Note>
+  `pin` and `unpin` work by **replying** to the target message. They do not accept message links or IDs as arguments — you must use Discord's native reply feature.
+</Note>
+
+<Tip>
+  For `createembed`, use the `embedcode` command on any existing XRYPTON embed to see the exact script syntax — it is the fastest way to learn the format.
+</Tip>
+
+---
+
+## Customization
+
+Server administrators can change how XRYPTON looks and presents itself within their server using the `customize` hybrid command group. All subcommands require **Manage Server** or **Administrator**.
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `customize` | `,customize` | Show the current per-server customisations (nickname, avatar, banner, bio). |
+| `customize avatar` | `,customize avatar [attachment\|url]` | Set XRYPTON's server avatar via an uploaded image or a direct image URL. |
+| `customize name` | `,customize name <name>` | Set XRYPTON's nickname in your server. |
+| `customize banner` | `,customize banner [attachment\|url]` | Set XRYPTON's server banner via an uploaded image or a direct image URL. |
+| `customize aboutme` | `,customize aboutme <bio>` | Set a custom bio for XRYPTON's server profile. |
+| `customize reset` | `,customize reset <field>` | Reset a single customisation field (`avatar`, `name`, `banner`, or `aboutme`) back to default. |
+| `customize resetall` | `,customize resetall` | Reset all customisations for your server at once, restoring XRYPTON's global defaults. |
+
+<Warning>
+  Customisations are **per-server** — changes you make in one server do not affect XRYPTON's appearance anywhere else. `resetall` cannot be undone; you will need to re-apply each customisation manually if you change your mind.
+</Warning>
+
+---
+
+## VoiceMaster
+
+XRYPTON also includes a **VoiceMaster** system for automatically creating and managing temporary voice channels. VoiceMaster is a prefix-only feature.
+
+<Note>
+  VoiceMaster commands are documented on the dedicated [VoiceMaster page](/server/voicemaster). Refer to that page for setup instructions, channel controls, and permission management.
+</Note>

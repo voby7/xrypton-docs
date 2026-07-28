@@ -1,0 +1,214 @@
+---
+title: "Set Up Anti-Nuke Protection for Your Server"
+sidebarTitle: "Anti-Nuke"
+description: "Defend your server against destructive attacks by monitoring audit log events and automatically punishing anyone who exceeds safe action thresholds."
+---
+
+Anti-Nuke is XRYPTON's first line of defense against coordinated server destruction. It watches your audit log in real time and, the moment any user exceeds a configured threshold for a destructive action — mass bans, channel deletions, webhook abuse, and more — it automatically applies the punishment you've chosen. Only the server owner (or a designated Anti-Nuke admin) can change these settings, keeping the system safe from the very administrators it may need to act against.
+
+<Warning>
+  Anti-Nuke only takes effect after you enable it with `/antinuke enable`. All modules are created at setup time but start **disabled** — you must toggle each one on individually.
+</Warning>
+
+## How It Works
+
+When Anti-Nuke is active, XRYPTON listens to your server's audit log for the events listed below. Each time a user performs a tracked action, their count for that module increments. If their count reaches the configured **threshold** within a 60-second window, the configured **punishment** is applied immediately. The counter resets after 60 seconds of inactivity on that module.
+
+<CardGroup cols={3}>
+  <Card title="Ban" icon="hammer">
+    Triggers on bans **and** unbans performed by a user.
+  </Card>
+  <Card title="Kick" icon="user-minus">
+    Triggers each time a user kicks another member.
+  </Card>
+  <Card title="Bot" icon="robot">
+    Instantly bans any bot added to the server that isn't whitelisted — no threshold applies.
+  </Card>
+  <Card title="Roles" icon="shield-halved">
+    Tracks mass role creation and deletion events.
+  </Card>
+  <Card title="Vanity" icon="link">
+    Fires when anyone changes the server's vanity URL.
+  </Card>
+  <Card title="Webhook" icon="webhook">
+    Monitors webhook creation and deletion.
+  </Card>
+  <Card title="Channels" icon="hashtag">
+    Tracks channel creation, deletion, and updates in bulk.
+  </Card>
+  <Card title="Permissions" icon="key">
+    Fires when a user grants the Administrator permission to a role and immediately removes that role from the target.
+  </Card>
+  <Card title="Massmention" icon="at">
+    Fires when a user sends a message that pings `@everyone` or `@here`. The offending message is automatically deleted.
+  </Card>
+</CardGroup>
+
+<Note>
+  The server owner and any user on the whitelist or admin list are **always** exempt from Anti-Nuke actions, regardless of what they do.
+</Note>
+
+---
+
+## Getting Started
+
+<Steps>
+  <Step title="Enable Anti-Nuke">
+    Run the enable command in any channel. You must be the server owner or have Anti-Nuke admin status.
+
+    ```discord
+    /antinuke enable
+    ```
+
+    XRYPTON creates a default entry for every module with a threshold of `1` and a punishment of `ban`. All modules are **disabled** until you toggle them on.
+  </Step>
+
+  <Step title="Toggle on the modules you want">
+    Enable each protection module you need. You can run this command for every module name listed in the [Modules](#how-it-works) section above.
+
+    ```discord
+    /antinuke toggle ban
+    /antinuke toggle kick
+    /antinuke toggle channels
+    ```
+  </Step>
+
+  <Step title="Tune your thresholds">
+    Set how many actions within 60 seconds trigger a punishment. A threshold of `3` means the fourth action fires the punishment.
+
+    ```discord
+    /antinuke threshold ban 3
+    /antinuke threshold channels 5
+    ```
+  </Step>
+
+  <Step title="Choose punishments">
+    Pick what happens to an attacker. Available options are `ban`, `kick`, `warn`, and `strip`.
+
+    ```discord
+    /antinuke action ban ban
+    /antinuke action channels kick
+    /antinuke action permissions strip
+    ```
+  </Step>
+
+  <Step title="Whitelist trusted users">
+    Whitelist co-owners, trusted bots, or any user who legitimately performs high-volume actions.
+
+    ```discord
+    /antinuke whitelist @TrustedAdmin
+    ```
+  </Step>
+
+  <Step title="Verify your configuration">
+    Review every module's current status, threshold, and punishment in one embed.
+
+    ```discord
+    /antinuke settings
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Punishments
+
+When an Anti-Nuke module fires, XRYPTON applies the punishment you configured for that module. Each punishment is described below.
+
+<Tabs>
+  <Tab title="ban">
+    Permanently bans the offending user from the server. Best suited for modules where the action is unambiguously malicious, such as **Ban**, **Webhook**, and **Bot**.
+  </Tab>
+  <Tab title="kick">
+    Removes the user from the server without a ban, allowing them to rejoin. Useful when you want to interrupt an attack without a permanent penalty.
+  </Tab>
+  <Tab title="warn">
+    Sends the user a direct message warning them that further actions will result in a punishment. No server-level action is taken. Suitable for lenient configurations.
+  </Tab>
+  <Tab title="strip">
+    Removes every dangerous role from the user — roles that carry permissions such as Administrator, Manage Channels, Manage Roles, Manage Webhooks, Ban Members, Kick Members, and more. This is the recommended punishment for the **Permissions** module.
+  </Tab>
+</Tabs>
+
+<Tip>
+  Use `strip` for the **Permissions** module. When that module fires, XRYPTON already removes the specific dangerous role from the target — pairing it with `strip` also de-powers the attacker themselves.
+</Tip>
+
+---
+
+## Managing the Whitelist
+
+Users on the whitelist are completely ignored by every Anti-Nuke module. Running the command on an already-whitelisted user **removes** them from the whitelist (toggle behaviour).
+
+```discord
+/antinuke whitelist @Username
+```
+
+To see everyone currently whitelisted:
+
+```discord
+/antinuke whitelisted
+```
+
+---
+
+## Managing Anti-Nuke Admins
+
+Anti-Nuke admins can run all Anti-Nuke configuration commands without being the server owner. They cannot whitelist themselves or add other admins — only the server owner can do that. Running the command on an existing admin **removes** them (toggle behaviour).
+
+```discord
+/antinuke admin @Username
+```
+
+To view the current admin list:
+
+```discord
+/antinuke admins
+```
+
+<Warning>
+  Grant Anti-Nuke admin status only to people you fully trust. An admin could whitelist an attacker's account before carrying out destructive actions.
+</Warning>
+
+---
+
+## Disabling Anti-Nuke
+
+To turn off all Anti-Nuke protection without deleting your module settings:
+
+```discord
+/antinuke disable
+```
+
+You can re-enable it at any time with `/antinuke enable` and your previous module configurations will still be in place.
+
+---
+
+## Command Reference
+
+| Command | Syntax | Description |
+|---|---|---|
+| `antinuke enable` | `/antinuke enable` | Enables Anti-Nuke for the server and initialises all modules. |
+| `antinuke disable` | `/antinuke disable` | Disables Anti-Nuke without deleting module configuration. |
+| `antinuke toggle` | `/antinuke toggle <module>` | Enables or disables a specific module (toggles on each call). |
+| `antinuke threshold` | `/antinuke threshold <module> <number>` | Sets how many actions within 60 seconds trigger a punishment. |
+| `antinuke action` | `/antinuke action <module> <punishment>` | Sets the punishment for a module (`ban`, `kick`, `warn`, `strip`). |
+| `antinuke whitelist` | `/antinuke whitelist <user>` | Adds or removes a user from the global whitelist (toggles). |
+| `antinuke whitelisted` | `/antinuke whitelisted` | Lists all users currently on the whitelist. |
+| `antinuke admin` | `/antinuke admin <user>` | Grants or revokes Anti-Nuke admin status for a user (toggles). |
+| `antinuke admins` | `/antinuke admins` | Lists all current Anti-Nuke admins. |
+| `antinuke settings` | `/antinuke settings` | Displays every module's enabled state, threshold, and punishment. |
+
+<Accordion title="Valid module names for toggle / threshold / action">
+  All module names are case-insensitive. The accepted values are:
+
+  - `ban`
+  - `kick`
+  - `bot`
+  - `roles`
+  - `vanity`
+  - `webhook`
+  - `channels`
+  - `permissions`
+  - `massmention`
+</Accordion>

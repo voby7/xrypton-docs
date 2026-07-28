@@ -1,0 +1,124 @@
+---
+title: "XRYPTON Permissions and Discord Intents Guide"
+sidebarTitle: "Permissions"
+description: "Learn which Discord permissions and privileged gateway intents XRYPTON needs, how to grant them correctly, and how to fix common permission errors."
+---
+
+XRYPTON needs certain Discord permissions and gateway intents to do its job properly. Without the right permissions, commands will silently fail or return errors, and without the required intents the bot cannot see the data it needs to power features like moderation, leveling, and prefix commands. This page explains exactly what XRYPTON needs, why it needs it, and how to make sure everything is configured correctly.
+
+## Recommended: Invite with Administrator
+
+The simplest and most reliable approach is to invite XRYPTON with the **Administrator** permission. Administrator is a superset of every other permission, so it eliminates the risk of XRYPTON being blocked by a missing permission mid-command.
+
+<Tip>
+  Use the standard invite link from [xrypton.vercel.app](https://xrypton.vercel.app) or the `/invite` command — both include the Administrator permission by default.
+</Tip>
+
+If your server's security policy does not allow a bot to hold Administrator, see the minimum permissions list below.
+
+## Minimum Required Permissions
+
+If you choose not to grant Administrator, you need to enable each of the following permissions on XRYPTON's role manually. Missing even one of these can break the feature that depends on it.
+
+<Accordion title="Moderation Permissions">
+  | Permission | Why XRYPTON needs it |
+  |---|---|
+  | **Ban Members** | Issuing and revoking bans via moderation and AntiRaid commands |
+  | **Kick Members** | Removing members from the server |
+  | **Manage Roles** | Assigning and removing roles (mutes, level rewards, ticket staff) |
+  | **Manage Channels** | Creating ticket channels, VoiceMaster channels, lockdowns |
+  | **Manage Messages** | Purging messages, pinning, and cleaning up command output |
+  | **Mute Members** | Server-muting members in voice channels |
+  | **Moderate Members** | Applying timeouts to members |
+  | **Manage Nicknames** | Changing or resetting member nicknames |
+  | **View Audit Log** | Reading audit log entries for AntiNuke detection |
+  | **Manage Guild** | Reading and updating server settings for setup commands |
+  | **Manage Webhooks** | Creating webhooks for logging and ticket transcript delivery |
+</Accordion>
+
+<Accordion title="Messaging & Content Permissions">
+  | Permission | Why XRYPTON needs it |
+  |---|---|
+  | **Read Message History** | Snipe commands, context-aware responses, purge operations |
+  | **Send Messages** | Sending command responses and bot messages |
+  | **Embed Links** | Sending rich embed responses (most commands use embeds) |
+  | **Attach Files** | Sending images, transcripts, and file-based responses |
+  | **Use External Emojis** | Displaying XRYPTON's custom reaction and status emojis |
+  | **Add Reactions** | Giveaway entry reactions and interactive menu controls |
+</Accordion>
+
+<Accordion title="Voice Permissions">
+  | Permission | Why XRYPTON needs it |
+  |---|---|
+  | **Connect** | Joining voice channels for VoiceMaster management |
+  | **Move Members** | Moving members between voice channels |
+</Accordion>
+
+<Note>
+  Make sure XRYPTON's role is positioned **above** any roles it needs to manage in the server's role hierarchy. Discord prevents a bot from acting on members who hold roles higher than the bot's own highest role, regardless of what permissions are granted.
+</Note>
+
+## Privileged Gateway Intents
+
+Beyond Discord permissions, XRYPTON requires three **privileged gateway intents** that must be active. These are enabled automatically when you use the official invite link. If you are self-hosting or manually configuring the bot in the [Discord Developer Portal](https://discord.com/developers/applications), you need to turn them on yourself.
+
+<CardGroup cols={1}>
+  <Card title="Message Content Intent" icon="message">
+    Allows XRYPTON to read the content of messages. This is essential for prefix commands — without it, the bot cannot see the text after the prefix and will not process any `,command` style invocations.
+
+    **Where to enable:** Developer Portal → your application → **Bot** → Privileged Gateway Intents → toggle **Message Content Intent**.
+  </Card>
+  <Card title="Server Members Intent" icon="users">
+    Gives XRYPTON access to the full member list, join and leave events, and member update events. Required for leveling, welcome messages, AntiRaid join detection, and any command that looks up member data.
+
+    **Where to enable:** Developer Portal → your application → **Bot** → Privileged Gateway Intents → toggle **Server Members Intent**.
+  </Card>
+  <Card title="Presence Intent" icon="circle-dot">
+    Allows XRYPTON to see member presence data including online status and current activities. Used by the Information module to display accurate user status information.
+
+    **Where to enable:** Developer Portal → your application → **Bot** → Privileged Gateway Intents → toggle **Presence Intent**.
+  </Card>
+</CardGroup>
+
+<Warning>
+  If **Message Content Intent** is disabled, all prefix commands (e.g. `,ban`, `,help`) will stop working entirely. Slash commands will still function. Enable this intent in the Developer Portal to restore prefix command support.
+</Warning>
+
+## Fixing "Missing Permissions" Errors
+
+If XRYPTON responds with a **Missing Permissions** error when you run a command, work through this checklist:
+
+<Steps>
+  <Step title="Check the bot's role permissions">
+    Go to **Server Settings → Roles**, find the XRYPTON role, and verify the required permission for the failing command is enabled. Cross-reference with the minimum permissions tables above.
+  </Step>
+  <Step title="Check channel-level permission overrides">
+    Discord channel overrides take priority over role permissions. Open the relevant channel's **Edit Channel → Permissions** and ensure XRYPTON is not explicitly denied a permission there.
+  </Step>
+  <Step title="Check role hierarchy">
+    If the command involves acting on another member (ban, kick, role assignment), confirm XRYPTON's role is positioned above that member's highest role in **Server Settings → Roles**.
+  </Step>
+  <Step title="Re-invite with Administrator">
+    If you are still seeing errors and want a clean fix, re-invite XRYPTON using the link from [xrypton.vercel.app](https://xrypton.vercel.app) which includes Administrator. Kick the existing bot entry first, then follow the invite flow.
+  </Step>
+</Steps>
+
+## Bot-Level Permissions with `/fakeperms`
+
+XRYPTON includes its own internal permission layer that is separate from Discord's native permission system. You can use `/fakeperms` to grant a Discord role elevated permissions **within XRYPTON itself**, without changing any Discord-level permissions.
+
+This is useful when you want a custom staff role — one that does not have Discord's native `Ban Members` permission — to still be able to run XRYPTON's ban commands.
+
+```text
+/fakeperms add <role> <permission>
+```
+
+For example, to let your `Trial Mod` role use XRYPTON's moderation commands:
+
+```text
+/fakeperms add @TrialMod ban_members
+```
+
+<Note>
+  `/fakeperms` only controls access to XRYPTON's own command checks. It does not grant or change any real Discord permissions. XRYPTON itself still needs the underlying Discord permissions to carry out actions like banning or managing roles.
+</Note>

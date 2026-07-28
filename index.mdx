@@ -1,20 +1,77 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: "XRYPTON: Your All-in-One Discord Bot"
+sidebarTitle: "Home"
+description: "XRYPTON is a powerful, feature-rich Discord bot offering security, moderation, economy, leveling, AI, games, and more. Get started in minutes."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+XRYPTON is a multi-purpose Discord bot built to handle everything your server needs — from anti-nuke and anti-raid protection to an in-depth economy system, XP leveling, AI-powered tools, mini-games, and full server management. Add XRYPTON once and stop juggling multiple bots.
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Add XRYPTON to your server and run your first commands in under 5 minutes.
+  </Card>
+  <Card title="Security" icon="shield-halved" href="/security/antinuke">
+    Protect your server with Anti-Nuke and Anti-Raid systems.
+  </Card>
+  <Card title="Server Setup" icon="gear" href="/server/setup">
+    Configure welcome messages, auto-roles, autoresponders, and more.
+  </Card>
+  <Card title="Commands" icon="terminal" href="/commands/moderation">
+    Browse the full command reference across every module.
+  </Card>
+</CardGroup>
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+## What XRYPTON Can Do
+
+XRYPTON ships with 15+ feature modules, all configurable per-server using slash commands or the default prefix `,`.
+
+<CardGroup cols={3}>
+  <Card title="Anti-Nuke" icon="shield" href="/security/antinuke">
+    Detect and punish nuke attempts in real time.
+  </Card>
+  <Card title="Anti-Raid" icon="user-shield" href="/security/antiraid">
+    Block mass-joins, new accounts, and default-avatar users.
+  </Card>
+  <Card title="Moderation" icon="gavel" href="/server/moderation">
+    Ban, kick, mute, purge, lockdown, and manage roles.
+  </Card>
+  <Card title="Economy" icon="coins" href="/economy/overview">
+    Earn coins, fish, shop, and gamble with friends.
+  </Card>
+  <Card title="Leveling" icon="chart-line" href="/server/levels">
+    Award XP, set role rewards, and track leaderboards.
+  </Card>
+  <Card title="Tickets" icon="ticket" href="/server/tickets">
+    Create a support ticket system with topics and staff roles.
+  </Card>
+  <Card title="Giveaways" icon="gift" href="/server/giveaways">
+    Host timed giveaways with automatic winner selection.
+  </Card>
+  <Card title="VoiceMaster" icon="microphone" href="/server/voicemaster">
+    Let members create and manage their own voice channels.
+  </Card>
+  <Card title="AI Tools" icon="robot" href="/features/ai">
+    Ask questions, generate images, and convert text to speech.
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Invite XRYPTON">
+    Use the `/invite` command inside any server where XRYPTON is already present, or visit [xrypton.vercel.app](https://xrypton.vercel.app) to get the invite link. Grant the **Administrator** permission for full functionality.
+  </Step>
+  <Step title="Set Your Prefix">
+    The default prefix is `,`. Use `/prefix add <prefix>` to change it to something custom for your server, or continue using slash commands — all core features are available as `/` commands.
+  </Step>
+  <Step title="Enable Security">
+    Run `/antinuke enable` and `/antiraid massjoin enable` to protect your server right away. See the [Security](/security/antinuke) section for detailed configuration.
+  </Step>
+  <Step title="Explore Features">
+    Browse the docs to set up the features your community needs — leveling, economy, tickets, giveaways, and more.
+  </Step>
+</Steps>
+
+<Note>
+  XRYPTON requires **privileged intents** (message content, guild members, presences) to be fully functional. Make sure these are enabled when you invite the bot.
+</Note>

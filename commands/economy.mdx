@@ -1,0 +1,65 @@
+---
+title: "Economy Commands Reference for XRYPTON Bot"
+sidebarTitle: "Economy"
+description: "Reference guide for XRYPTON's economy system — check your balance, visit the shop, go fishing, manage inventory, and wager coins in four mini-games."
+---
+
+XRYPTON's economy system gives your server a shared virtual currency layer. Members earn coins through activity and mini-games, spend them in the shop, and collect items tracked in their personal inventory. All economy commands are slash-command compatible, and wager-based games use the coin balance drawn directly from your wallet.
+
+<Note>
+Economy commands are powered by XRYPTON's economy cog. Exact command names may reflect your server's configured prefix or slash-command registration. The names listed below are the canonical identifiers — check your server's command list with `/help economy` if any differ.
+</Note>
+
+## Wallet & Balance
+
+Keep track of how many coins you and other members are holding.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `balance` | `balance [@user]` | Show your current coin balance, or the balance of another member if you mention them. Alias: `wallet`. | None |
+
+---
+
+## Shop & Inventory
+
+Browse purchasable items and manage your personal collection.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `shop` | `shop` | Browse all items available for purchase in the server shop. Shows item names, descriptions, and prices. | None |
+| `inventory` | `inventory [@user]` | View your owned items, or inspect another member's inventory. | None |
+
+---
+
+## Fishing
+
+Cast your line and reel in a catch — different fish carry different coin values.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `fish` | `fish` | Go fishing! Your catch (and its coin reward) is determined by chance. Subject to a cooldown between casts. | None |
+
+<Tip>
+Fishing is subject to a per-user cooldown. If your cast fails, wait a moment and try again.
+</Tip>
+
+---
+
+## Mini-Games
+
+Risk your coins for a chance to multiply them. All games are subject to cooldowns to prevent abuse.
+
+| Command | Usage | Description | Required Permission |
+|---|---|---|---|
+| `coinflip` | `coinflip <amount> <heads\|tails>` | Flip a coin. Correctly predicting the result doubles your wager; a wrong call loses it. | None |
+| `mines` | `mines <amount>` | Navigate a minefield. Cash out early to keep your winnings, or risk it all for a bigger multiplier. | None |
+| `rps` | `rps <amount> <@user>` | Challenge another member to Rock, Paper, Scissors. The winner takes the combined pot. | None |
+| `towers` | `towers <amount>` | Climb a tower by picking the correct tile on each floor. Higher floors yield bigger multipliers. | None |
+
+<Warning>
+All wager games deduct the bet amount from your balance at the moment you start the game. Closing or ignoring the game prompt without making a move will result in a forfeit of the wagered amount.
+</Warning>
+
+<Note>
+The `rps` command requires your opponent to accept the challenge before the game begins. If they do not respond within the timeout window, the wager is returned to both players.
+</Note>
