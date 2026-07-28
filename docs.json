@@ -4,11 +4,11 @@
   "theme": "luma",
   "logo": {
     "light": "https://media.brand.dev/41bcf7ca-2804-4636-a2fd-8327fa9522e1.svg",
-    "dark": "https://media.brand.dev/cf9c392f-e78a-4f65-a9b6-139d85264131.svg"
+    "dark": "https://media.brand.dev/41bcf7ca-2804-4636-a2fd-8327fa9522e1.svg"
   },
   "favicon": "https://media.brand.dev/252cd58e-9804-4743-b91e-76caebd55fed.png",
   "colors": {
-    "primary": "#9ca4ac",
+    "primary": "#0891b2",
     "light": "#05eae4",
     "dark": "#5ef0ed"
   },
